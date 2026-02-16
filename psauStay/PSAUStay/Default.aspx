@@ -4,14 +4,14 @@
     <div class="hero-section">
         <div class="hero-overlay"></div>
         <div class="container hero-content text-center">
-            <h1 class="display-2 fw-bold mb-3">Welcome to PSAU Hostel</h1>
+            <h1 class="display-2 fw-bold mb-3">HELLO Welcome to PSAU Hostel</h1>
             <p class="fs-4 mb-5 opacity-90">Experience comfort and convenience within the heart of the campus.</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <a href='<%= ResolveUrl("~/Booking.aspx") %>' class="btn btn-psau-gold btn-lg shadow-lg">
                     <i class="bi bi-calendar-check me-2"></i>Book Your Stay Now
                 </a>
                 <a href='<%= ResolveUrl("~/RoomList.aspx") %>' class="btn btn-outline-light btn-lg shadow-lg">
-                    <i class="bi bi-door-open me-2"></i>View All Rooms
+                    <i class="bi bi-door-open me-2"></i>TIGNAN MOKO SA SALAMIN
                 </a>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
     <div class="container py-5" id="rooms">
         <div class="text-center mb-5">
-            <h2 class="section-title">Our Accommodations</h2>
+            <h2 class="section-title">HELLO Our Accommodations</h2>
             <p class="text-muted">Select from our range of well-maintained rooms.</p>
         </div>
         
