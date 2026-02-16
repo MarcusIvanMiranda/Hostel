@@ -175,9 +175,25 @@
 </style>
 
 <div class="maintenance-container">
-    <div class="maintenance-header">
-        <h4><i class="bi bi-tools me-2"></i>View All Maintenance Requests</h4>
+<%-- Modern Green Header --%>
+<div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+    <div class="card-body p-4">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="mb-1 fw-bold text-white">
+                    <i class="bi bi-tools me-2" style="color: var(--psau-gold);"></i>
+                   VIew All Maintenance
+                </h2>
+                <p class="mb-0 text-white-50">View All Maintenance Assigned</p>
+            </div>
+            <div class="col-auto">
+                <a href="HouseKeeperDashboard.aspx" class="btn btn-light shadow-sm fw-bold">
+                    <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                </a>
+            </div>
+        </div>
     </div>
+</div>
     
     <div class="filter-section">
         <div class="filter-group">

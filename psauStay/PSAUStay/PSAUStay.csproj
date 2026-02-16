@@ -114,7 +114,6 @@
     <Content Include="Admin\ManageRooms.aspx" />
     <Content Include="Admin\NotifyHousekeeping.aspx" />
     <Content Include="Admin\Reservations.aspx" />
-    <Content Include="Admin\RoomList.aspx" />
     <Content Include="Admin\RoomRequest.aspx" />
     <Content Include="Admin\RoomStatus.aspx" />
     <Content Include="Admin\RoomUnits.aspx" />
@@ -184,6 +183,7 @@
     <Content Include="RoomImages\Room_9_2.jpg" />
     <Content Include="RoomImages\Room_9_3.png" />
     <Content Include="RoomImages\Room_9_5.jpg" />
+    <Content Include="RoomList.aspx" />
     <Content Include="Rooms.aspx" />
     <Content Include="UploadPayment.aspx" />
     <Content Include="Images\location.jpg" />
@@ -405,13 +405,6 @@
     <Compile Include="Admin\Reservations.aspx.designer.cs">
       <DependentUpon>Reservations.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Admin\RoomList.aspx.cs">
-      <DependentUpon>RoomList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin\RoomList.aspx.designer.cs">
-      <DependentUpon>RoomList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Admin\RoomRequest.aspx.cs">
       <DependentUpon>RoomRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -553,6 +546,13 @@
     </Compile>
     <Compile Include="RoomDetails.aspx.designer.cs">
       <DependentUpon>RoomDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RoomList.aspx.cs">
+      <DependentUpon>RoomList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomList.aspx.designer.cs">
+      <DependentUpon>RoomList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Rooms.aspx.cs">
       <DependentUpon>Rooms.aspx</DependentUpon>

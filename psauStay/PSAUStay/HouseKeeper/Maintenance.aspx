@@ -35,7 +35,7 @@
             padding: 2rem;
             border-radius: 12px 12px 0 0;
             margin-bottom: 0;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      
         }
 
         .page-header h2 {
@@ -266,7 +266,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-left: 4px solid var(--psau-gold);
         }
 
         .user-details {
@@ -469,10 +468,10 @@
             // Clear session storage and local storage
             sessionStorage.clear();
             localStorage.clear();
-            
+
             // Optional: Clear any specific cookies if needed
-            document.cookie.split(";").forEach(function(c) { 
-                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+            document.cookie.split(";").forEach(function (c) {
+                document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
             });
         }
     </script>

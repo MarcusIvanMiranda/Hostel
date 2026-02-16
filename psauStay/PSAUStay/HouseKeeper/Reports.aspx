@@ -3,16 +3,30 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HouseKeeperMainContent" runat="server">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold text-success">Occupied Rooms Report</h2>
-                <p class="text-muted">Currently active guest stays.</p>
+<div class="container-fluid py-4">
+    <%-- Modern Green Header --%>
+    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="mb-1 fw-bold text-white">
+                        <i class="bi bi-door-open-fill me-2" style="color: var(--psau-gold);"></i>
+                        Occupied Rooms Report
+                    </h2>
+                    <p class="mb-0 text-white-50">Currently active guest stays (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
+                </div>
+                <div class="col-auto">
+                    <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold me-2">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                    <button type="button" class="btn btn-light shadow-sm fw-bold" data-bs-toggle="modal" data-bs-target="#historyModal">
+                        <i class="bi bi-clock-history me-2"></i> View Past Checkouts
+                    </button>
+                </div>
             </div>
-            <button type="button" class="btn btn-secondary shadow-sm" data-bs-toggle="modal" data-bs-target="#historyModal">
-                <i class="bi bi-clock-history me-1"></i> View Past Checkouts
-            </button>
         </div>
+    </div>
+    </div>
 
         <div class="row">
             <asp:Repeater ID="rptOccupiedRooms" runat="server">
