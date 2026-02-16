@@ -5,7 +5,7 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content text-center">
             <h1 class="display-2 fw-bold mb-3">HELLO Welcome to PSAU Hostel</h1>
-            <p class="fs-4 mb-5 opacity-90">GUSTO KO KAPEEEEEEEEEEEEEE</p>
+            <p class="fs-4 mb-5 opacity-90">GUSTO KO KAPEEEEEEEEEEEEEE AT PANDESALLLLLLLLLLLL</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <a href='<%= ResolveUrl("~/Booking.aspx") %>' class="btn btn-psau-gold btn-lg shadow-lg">
                     <i class="bi bi-calendar-check me-2"></i>Book Your Stay Now
