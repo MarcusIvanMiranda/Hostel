@@ -191,17 +191,27 @@
     <asp:HiddenField ID="hfSelectedID" runat="server" />
     <asp:Button ID="btnHiddenConfirm" runat="server" OnClick="btnMarkDone_Click" Style="display:none;" />
 
-    <div class="container-fluid py-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2 class="mb-0 fw-bold">
-                <i class="bi bi-broom-fill text-success me-2"></i>
-                Cleaning Schedule
-            </h2>
-            <div class="text-muted small">
-                <i class="bi bi-clock me-1"></i>
-                Rooms pending cleaning
+<div class="container-fluid py-4">
+    <%-- Modern Green Header --%>
+    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="mb-1 fw-bold text-white">
+                        <i class="bi bi-stars me-2" style="color: var(--psau-gold);"></i>
+                        Cleaning Schedule
+                    </h2>
+                    <p class="mb-0 text-white-50">Manage room sanitation and maintenance tasks (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
+                </div>
+                <div class="col-auto">
+                    <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
 
         <!-- Statistics Cards -->
         <div class="row mb-4">

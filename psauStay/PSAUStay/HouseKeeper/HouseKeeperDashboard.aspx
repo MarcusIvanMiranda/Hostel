@@ -306,16 +306,23 @@
             min-width: 0;
         }
     </style>
-
-    <div class="container-fluid">
-        <div class="row mb-4">
-            <div class="col-12">
-                <h2 class="mb-1">
-                    <i class="bi bi-broom-fill text-success me-2"></i>
-                    Housekeeper Dashboard
-                </h2>
+<div class="container-fluid py-4">
+    <%-- Modern Green Header --%>
+    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="mb-1 fw-bold text-white">
+                        <i class="bi bi-speedometer2 me-2" style="color: var(--psau-gold);"></i>
+                        Housekeeper Dashboard
+                    </h2>
+                    <p class="mb-0 text-white-50">Welcome back! Here is your daily overview for <%= DateTime.Now.ToString("MMM dd, yyyy") %></p>
+                </div>
+ 
             </div>
         </div>
+    </div>
+    </div>
 
         <div class="row mb-4">
             <div class="col-12">

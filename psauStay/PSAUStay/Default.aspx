@@ -6,9 +6,14 @@
         <div class="container hero-content text-center">
             <h1 class="display-2 fw-bold mb-3">Welcome to PSAU Hostel</h1>
             <p class="fs-4 mb-5 opacity-90">Experience comfort and convenience within the heart of the campus.</p>
-            <a href='<%= ResolveUrl("~/Booking.aspx") %>' class="btn btn-psau-gold btn-lg shadow-lg">
-                <i class="bi bi-calendar-check me-2"></i>Book Your Stay Now
-            </a>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href='<%= ResolveUrl("~/Booking.aspx") %>' class="btn btn-psau-gold btn-lg shadow-lg">
+                    <i class="bi bi-calendar-check me-2"></i>Book Your Stay Now
+                </a>
+                <a href='<%= ResolveUrl("~/RoomList.aspx") %>' class="btn btn-outline-light btn-lg shadow-lg">
+                    <i class="bi bi-door-open me-2"></i>View All Rooms
+                </a>
+            </div>
         </div>
     </div>
 
@@ -164,9 +169,9 @@
 
             imagesToCycle.forEach(img => {
                 const imageList = img.getAttribute('data-images')
-                                    .split(',')
-                                    .map(s => s.trim())
-                                    .filter(path => path !== "" && !path.includes("DBNull"));
+                    .split(',')
+                    .map(s => s.trim())
+                    .filter(path => path !== "" && !path.includes("DBNull"));
 
                 if (imageList.length > 1) {
                     let currentIndex = 0;
@@ -174,13 +179,13 @@
                     setInterval(() => {
 
                         img.style.opacity = "0";
-                        
+
                         setTimeout(() => {
                             currentIndex = (currentIndex + 1) % imageList.length;
                             img.src = imageList[currentIndex];
-                            
+
                             img.style.opacity = "1";
-                        }, 500); 
+                        }, 500);
 
                     }, 5000);
                 }
