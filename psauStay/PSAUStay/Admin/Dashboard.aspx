@@ -20,16 +20,23 @@
     </style>
 
     <div class="container-fluid py-4">
-        <%-- Header --%>
-        <div class="row mb-4 align-items-center">
-            <div class="col">
-                <h2 class="fw-bold" style="color: #157347;">Stays Analytics</h2>
-                <p class="text-muted">Real-time performance and booking overview.</p>
-            </div>
-            <div class="col-auto">
-                <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn shadow-sm" Style="background-color: #ffc107; color: #157347; font-weight: bold;" OnClick="btnRefresh_Click">
-                    <i class="bi bi-arrow-clockwise"></i> Refresh Dashboard
-                </asp:LinkButton>
+        <%-- Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-grid-1x2-fill me-2" style="color: var(--psau-gold);"></i>
+                            Stays Analytics
+                        </h2>
+                        <p class="mb-0 text-white-50">Real-time performance and booking overview</p>
+                    </div>
+                    <div class="col-auto">
+                        <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn btn-light shadow-sm fw-bold" OnClick="btnRefresh_Click">
+                            <i class="bi bi-arrow-clockwise me-2"></i> Refresh Dashboard
+                        </asp:LinkButton>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -179,8 +186,8 @@
                     labels: ['Pending', 'Approved', 'Rejected'],
                     datasets: [{
                         data: [
-                            document.getElementById('<%= lblPendingRequests.ClientID %>').innerText, 
-                            document.getElementById('<%= lblApprovedRequests.ClientID %>').innerText, 
+                            document.getElementById('<%= lblPendingRequests.ClientID %>').innerText,
+                            document.getElementById('<%= lblApprovedRequests.ClientID %>').innerText,
                             document.getElementById('<%= lblRejectedRequests.ClientID %>').innerText
                         ],
                         backgroundColor: ['#ffc107', '#157347', '#dc3545'],
