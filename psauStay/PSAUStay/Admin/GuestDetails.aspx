@@ -10,7 +10,25 @@
     <asp:Button ID="btnHiddenConfirm" runat="server" OnClick="btnConfirmAction_Click" Style="display:none;" />
 
     <div class="container mt-4">
-        <h3 class="mb-4 text-success"><i class="bi bi-people-fill me-2"></i>Guest Details</h3>
+        <%-- Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-person-badge-fill me-2" style="color: var(--psau-gold);"></i>
+                            Guest Details
+                        </h2>
+                        <p class="mb-0 text-white-50">View comprehensive guest information and booking history</p>
+                    </div>
+                    <div class="col-auto">
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <asp:Label ID="lblSuccessMessage" runat="server" CssClass="alert alert-success d-block mb-3" Visible="false"></asp:Label>
 
@@ -308,7 +326,7 @@
             };
 
             // Reject review function
-            window.rejectReview = function() {
+            window.rejectReview = function () {
                 Swal.fire({
                     title: '<i class="bi bi-x-circle-fill me-2" style="color: #dc3545;"></i>Reject Review',
                     html: `

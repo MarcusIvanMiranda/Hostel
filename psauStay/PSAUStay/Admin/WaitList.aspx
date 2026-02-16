@@ -10,7 +10,25 @@
     <asp:Button ID="btnHiddenConfirm" runat="server" OnClick="btnConfirmAction_Click" Style="display:none;" />
 
     <div class="container mt-4">
-        <h3 class="mb-4 text-success"><i class="bi bi-hourglass-split me-2"></i>Waitlist Requests</h3>
+        <%-- Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-hourglass-split me-2" style="color: var(--psau-gold);"></i>
+                            Waitlist Requests
+                        </h2>
+                        <p class="mb-0 text-white-50">Manage guest waitlist and booking queue</p>
+                    </div>
+                    <div class="col-auto">
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <asp:Label ID="lblMessage" runat="server" CssClass="d-block mb-3"></asp:Label>
 
@@ -66,7 +84,7 @@
             var id = button.getAttribute('data-id');
             var contact = button.getAttribute('data-contact');
             var action = button.getAttribute('data-action');
-            
+
             var isApprove = (action === 'Approve');
 
             if (isApprove) {

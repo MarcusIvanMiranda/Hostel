@@ -18,7 +18,7 @@ namespace PSAUStay
             {
                 LoadRoomTypes();
                 LoadRooms();
-                
+
                 // Initialize calendar to today
                 calCheckoutDate.SelectedDate = DateTime.Today;
                 lblSelectedCheckoutDate.Text = "Selected: " + DateTime.Today.ToString("MMMM dd, yyyy");
@@ -109,7 +109,7 @@ namespace PSAUStay
         {
             // Get all checkout dates for the current month
             List<DateTime> checkoutDates = GetCheckoutDatesForMonth(e.Day.Date);
-            
+
             // Check if current day has any checkouts
             if (checkoutDates.Contains(e.Day.Date))
             {
@@ -117,7 +117,7 @@ namespace PSAUStay
                 e.Cell.BackColor = System.Drawing.Color.LightCoral;
                 e.Cell.ForeColor = System.Drawing.Color.White;
                 e.Cell.Font.Bold = true;
-                
+
                 // Add a visual indicator
                 Label dot = new Label();
                 dot.Text = "●";

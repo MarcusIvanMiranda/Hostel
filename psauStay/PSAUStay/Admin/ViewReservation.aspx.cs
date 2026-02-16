@@ -32,9 +32,19 @@ namespace PSAUStay.Admin
                 {
                     pnlAllBookings.Visible = true;
                     pnlSingleDetails.Visible = false;
-                    LoadAllReservations();
                 }
             }
+
+            // Always load reservations for the grid view to maintain pagination state
+            if (pnlAllBookings.Visible)
+            {
+                LoadAllReservations();
+            }
+        }
+
+        protected void gvAllReservations_PageIndexChanged(object sender, EventArgs e)
+        {
+            LoadAllReservations();
         }
 
         private void LoadAllReservations()
@@ -170,15 +180,41 @@ namespace PSAUStay.Admin
                     int id = Convert.ToInt32(hfDeleteID.Value);
                     using (SqlConnection con = new SqlConnection(connStr))
                     {
+                        con.Open();
+
+                        // Get the UnitID from the reservation before deleting
+                        string getUnitQuery = @"
+                            SELECT UnitID 
+                            FROM RoomRequests 
+                            WHERE RequestID = @ID
+                            UNION ALL
+                            SELECT UnitID 
+                            FROM [dbo].[Reservation] 
+                            WHERE ReservationID = @ID";
+
+                        SqlCommand getUnitCmd = new SqlCommand(getUnitQuery, con);
+                        getUnitCmd.Parameters.AddWithValue("@ID", id);
+                        object unitIdObj = getUnitCmd.ExecuteScalar();
+
+                        // Delete the reservation records
                         string sql = "DELETE FROM RoomRequests WHERE RequestID = @ID; DELETE FROM [dbo].[Reservation] WHERE ReservationID = @ID;";
                         SqlCommand cmd = new SqlCommand(sql, con);
                         cmd.Parameters.AddWithValue("@ID", id);
-                        con.Open();
                         cmd.ExecuteNonQuery();
+
+                        // Update room unit status to Available if we found a UnitID
+                        if (unitIdObj != null && unitIdObj != DBNull.Value)
+                        {
+                            int unitId = Convert.ToInt32(unitIdObj);
+                            string updateUnitQuery = "UPDATE RoomUnits SET Status = 'Available' WHERE UnitID = @UnitID";
+                            SqlCommand updateUnitCmd = new SqlCommand(updateUnitQuery, con);
+                            updateUnitCmd.Parameters.AddWithValue("@UnitID", unitId);
+                            updateUnitCmd.ExecuteNonQuery();
+                        }
                     }
 
                     // We use a small hack here: redirect after the user clicks "OK" on the success alert
-                    string script = "Swal.fire('Deleted!', 'The record has been removed.', 'success').then(() => { window.location.href='ViewReservation.aspx'; });";
+                    string script = "Swal.fire('Deleted!', 'The record has been removed and room status updated to Available.', 'success').then(() => { window.location.href='ViewReservation.aspx'; });";
                     ScriptManager.RegisterStartupScript(this, GetType(), "DeleteSuccess", script, true);
                 }
                 catch (Exception ex)

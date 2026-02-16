@@ -33,23 +33,23 @@ namespace PSAUStay.Admin
 
             using (SqlConnection con = new SqlConnection(connStr))
             {
-                // Updated query: Only show guests who are currently checked in
-                // Today's date must be between CheckInDate and CheckOutDate
+                // Updated query: Removed the Date Comparison (GETDATE() BETWEEN...)
+                // Now it only checks for 'Approved' status and CheckInDate is today or earlier.
                 string query = @"
                     SELECT * FROM (
-                        SELECT ISNULL(GL.FullName, 'Guest') as FullName, ISNULL(GL.Email, RQ.Email) as Email, ISNULL(GL.Contact, RQ.Email) as Contact, RM.RoomName, RQ.CheckInDate, RQ.CheckOutDate, RQ.DateRequested, 'Online' as Source
+                        SELECT ISNULL(GL.FullName, 'Guest') as FullName, ISNULL(GL.Email, RQ.Email) as Email, ISNULL(GL.Contact, RQ.Email) as Contact, RM.RoomName, RQ.CheckInDate, RQ.CheckOutDate, RQ.DateRequested, RQ.Status as OriginalStatus, 'Online' as Source
                         FROM RoomRequests RQ
                         INNER JOIN Rooms RM ON RQ.RoomID = RM.RoomID
                         LEFT JOIN GuestList GL ON RQ.Email = GL.Email
-                        WHERE RQ.Status = 'Approved' AND CAST(GETDATE() AS DATE) BETWEEN CAST(RQ.CheckInDate AS DATE) AND CAST(RQ.CheckOutDate AS DATE)
+                        WHERE (RQ.Status = 'Approved' OR (RQ.Status = 'Pending' AND RQ.CheckInDate <= GETDATE())) AND RQ.CheckInDate <= GETDATE()
                         
                         UNION ALL
 
-                        SELECT ISNULL(GL.FullName, 'Guest') as FullName, ISNULL(GL.Email, RES.Contact) as Email, ISNULL(GL.Contact, RES.Contact) as Contact, RM.RoomName, RES.CheckInDate, RES.CheckOutDate, RES.DateCreated as DateRequested, 'Manual' as Source
+                        SELECT ISNULL(GL.FullName, 'Guest') as FullName, ISNULL(GL.Email, RES.Contact) as Email, ISNULL(GL.Contact, RES.Contact) as Contact, RM.RoomName, RES.CheckInDate, RES.CheckOutDate, RES.DateCreated as DateRequested, RES.Status as OriginalStatus, 'Manual' as Source
                         FROM [dbo].[Reservation] RES
                         INNER JOIN Rooms RM ON RES.RoomID = RM.RoomID
                         LEFT JOIN GuestList GL ON RES.UserID = GL.GuestID
-                        WHERE RES.Status = 'Approved' AND CAST(GETDATE() AS DATE) BETWEEN CAST(RES.CheckInDate AS DATE) AND CAST(RES.CheckOutDate AS DATE)
+                        WHERE (RES.Status = 'Approved' OR (RES.Status = 'Pending' AND RES.CheckInDate <= GETDATE())) AND RES.CheckInDate <= GETDATE()
                     ) AS ActiveData";
 
                 if (!string.IsNullOrEmpty(searchTerm))
@@ -89,6 +89,19 @@ namespace PSAUStay.Admin
         {
             txtSearch.Text = string.Empty;
             LoadActiveGuests();
+        }
+
+        protected string GetStatusBadgeHtml(string status)
+        {
+            string css = "";
+            switch (status.ToLower())
+            {
+                case "approved": css = "bg-success text-white"; break;
+                case "pending": css = "bg-warning text-dark"; break;
+                case "waitlisted": case "waitlist": css = "bg-info text-dark"; break;
+                default: css = "bg-danger text-white"; break;
+            }
+            return string.Format("<span class='badge {0}'>{1}</span>", css, status);
         }
 
         // This method is no longer used and can be deleted to prevent the DataReader error.

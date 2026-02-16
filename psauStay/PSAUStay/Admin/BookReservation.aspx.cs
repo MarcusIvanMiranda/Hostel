@@ -9,17 +9,6 @@ namespace PSAUStay.Admin
 {
     public partial class BookReservation : System.Web.UI.Page
     {
-        // Explicit control declarations to resolve CS0103 errors
-        protected global::System.Web.UI.WebControls.Label lblTotalUpcoming;
-        protected global::System.Web.UI.WebControls.Label lblThisWeek;
-        protected global::System.Web.UI.WebControls.Label lblNext7Days;
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatusFilter;
-        protected global::System.Web.UI.WebControls.DropDownList ddlDateRange;
-        protected global::System.Web.UI.WebControls.DropDownList ddlRoomFilter;
-        protected global::System.Web.UI.WebControls.CheckBox chkShowOnlyPending;
-        protected global::DevExpress.Web.ASPxGridView gvUpcomingReservations;
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNoRecords;
-
         string connStr = ConfigurationManager.ConnectionStrings["PSAUStayConnection"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -61,9 +50,9 @@ namespace PSAUStay.Admin
                 // Total upcoming
                 string totalQuery = @"
                     SELECT COUNT(*) FROM (
-                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate >= @Today
+                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate > @Today
                         UNION ALL
-                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate >= @Today
+                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate > @Today
                     ) AS Combined";
                 SqlCommand totalCmd = new SqlCommand(totalQuery, con);
                 totalCmd.Parameters.AddWithValue("@Today", today);
@@ -73,9 +62,9 @@ namespace PSAUStay.Admin
                 // This week
                 string weekQuery = @"
                     SELECT COUNT(*) FROM (
-                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate >= @WeekStart AND CheckInDate < @WeekEnd
+                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate > @WeekStart AND CheckInDate < @WeekEnd
                         UNION ALL
-                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate >= @WeekStart AND CheckInDate < @WeekEnd
+                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate > @WeekStart AND CheckInDate < @WeekEnd
                     ) AS Combined";
                 SqlCommand weekCmd = new SqlCommand(weekQuery, con);
                 weekCmd.Parameters.AddWithValue("@WeekStart", weekStart);
@@ -85,9 +74,9 @@ namespace PSAUStay.Admin
                 // Next 7 days
                 string next7Query = @"
                     SELECT COUNT(*) FROM (
-                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate >= @Today AND CheckInDate <= @Next7Days
+                        SELECT RequestID, CheckInDate FROM RoomRequests WHERE CheckInDate > @Today AND CheckInDate <= @Next7Days
                         UNION ALL
-                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate >= @Today AND CheckInDate <= @Next7Days
+                        SELECT ReservationID, CheckInDate FROM [dbo].[Reservation] WHERE CheckInDate > @Today AND CheckInDate <= @Next7Days
                     ) AS Combined";
                 SqlCommand next7Cmd = new SqlCommand(next7Query, con);
                 next7Cmd.Parameters.AddWithValue("@Today", today);
@@ -145,7 +134,7 @@ namespace PSAUStay.Admin
                         FROM RoomRequests RQ 
                         INNER JOIN Rooms RM ON RQ.RoomID = RM.RoomID
                         LEFT JOIN GuestList GL ON RQ.Email = GL.Email
-                        WHERE RQ.CheckInDate >= @StartDate AND RQ.CheckInDate <= @EndDate
+                        WHERE RQ.CheckInDate > @StartDate AND RQ.CheckInDate <= @EndDate
                         
                         UNION ALL
                         
@@ -163,7 +152,7 @@ namespace PSAUStay.Admin
                         FROM [dbo].[Reservation] R 
                         LEFT JOIN Rooms RM ON R.RoomID = RM.RoomID
                         LEFT JOIN GuestList GL ON R.UserID = GL.GuestID
-                        WHERE R.CheckInDate >= @StartDate AND R.CheckInDate <= @EndDate
+                        WHERE R.CheckInDate > @StartDate AND R.CheckInDate <= @EndDate
                     ) AS CombinedData 
                     WHERE 1=1";
 
@@ -294,7 +283,7 @@ namespace PSAUStay.Admin
             LoadUpcomingReservations();
         }
 
-        protected void chkShowOnlyPending_CheckedChanged(object sender, EventArgs e)
+        protected void chkShowOnlyPending_ServerChange(object sender, EventArgs e)
         {
             LoadUpcomingReservations();
         }
