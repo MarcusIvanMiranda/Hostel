@@ -2,13 +2,50 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminMainContent" runat="server">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+        .swal2-header-custom {
+            background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%) !important;
+            border-left: none !important;
+            border-right: none !important;
+            border-top: none !important;
+            border-bottom: 3px solid var(--psau-green-dark) !important;
+            border-radius: 0.375rem 0.375rem 0 0 !important;
+        }
+        
+        .swal2-header-custom .swal2-title {
+            color: white !important;
+        }
+        
+        .swal2-popup.swal2-modal {
+            border-radius: 0.5rem !important;
+        }
+    </style>
 
     <asp:HiddenField ID="hfSelectedID" runat="server" />
     <asp:HiddenField ID="hfActionType" runat="server" />
     <asp:Button ID="btnHiddenConfirm" runat="server" OnClick="btnConfirmAction_Click" Style="display:none;" />
 
     <div class="container mt-4">
-        <h3 class="mb-4 text-success"><i class="bi bi-people-fill me-2"></i>Guest List - Approved Bookings</h3>
+        <%-- Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-people-fill me-2" style="color: var(--psau-gold);"></i>
+                            Guest List - Approved Bookings
+                        </h2>
+                        <p class="mb-0 text-white-50">View and manage all approved guest reservations</p>
+                    </div>
+                    <div class="col-auto">
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <asp:GridView ID="gvGuestList" runat="server" CssClass="table table-bordered table-striped"
             AutoGenerateColumns="False" AllowPaging="True" PageSize="15"
@@ -42,7 +79,7 @@
     <div class="modal fade" id="guestDetailsModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content border-0 shadow-lg">
-                <div class="modal-header" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%); color: white; border-radius: 0.375rem 0.375rem 0 0;">
+                <div class="modal-header" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%); color: white; border-radius: 0.375rem 0.375rem 0 0; border-left: none; border-right: none; border-top: none; border-bottom: 3px solid var(--psau-green-dark);">
                     <div class="d-flex align-items-center">
                         <div class="me-3">
                             <i class="bi bi-person-badge-fill" style="font-size: 1.5rem; color: var(--psau-gold);"></i>
@@ -198,7 +235,7 @@
                 html: `
                     <div style="text-align: left; max-width: 100%; overflow-x: hidden;">
                         <!-- Guest Information Header -->
-                        <div class="mb-4 p-4 bg-light rounded-3 border-start border-4 border-success">
+                        <div class="mb-4 p-4 bg-light rounded-3 ">
                             <div class="d-flex align-items-center mb-3">
                                 <div class="rounded-circle bg-success bg-opacity-10 p-3 me-3">
                                     <i class="bi bi-person-fill text-success" style="font-size: 1.5rem;"></i>
@@ -247,13 +284,14 @@
                 background: '#ffffff',
                 customClass: {
                     popup: 'shadow-lg',
-                    htmlContainer: 'p-0'
+                    htmlContainer: 'p-0',
+                    header: 'swal2-header-custom'
                 }
             });
         }
 
         // Add event listener for modal hidden event to reset content
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const modalElement = document.getElementById('guestDetailsModal');
             if (modalElement) {
                 modalElement.addEventListener('hidden.bs.modal', function () {
@@ -265,7 +303,7 @@
                             element.textContent = '-';
                         }
                     });
-                    
+
                     // Clear bookings grid
                     const bookingsGrid = document.getElementById('bookingsGrid');
                     if (bookingsGrid) {

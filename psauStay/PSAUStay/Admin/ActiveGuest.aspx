@@ -2,15 +2,27 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminMainContent" runat="server">
     <div class="container-fluid py-4">
-        <%-- Header Section --%>
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div>
-                <h2 class="fw-bold" style="color: #1b5e20;">Active Guests</h2>
-                <p class="text-muted">Real-time In-House Guests (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
+        <%-- Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-people-fill me-2" style="color: var(--psau-gold);"></i>
+                            Active Guests
+                        </h2>
+                        <p class="mb-0 text-white-50">Real-time In-House Guests (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
+                    </div>
+                    <div class="col-auto">
+                        <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold me-2">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                        <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn btn-light shadow-sm fw-bold" OnClick="btnRefresh_Click">
+                            <i class="bi bi-arrow-clockwise me-2"></i> Refresh
+                        </asp:LinkButton>
+                    </div>
+                </div>
             </div>
-            <asp:LinkButton ID="btnRefresh" runat="server" CssClass="btn btn-light text-success shadow-sm" OnClick="btnRefresh_Click">
-                <i class="bi bi-arrow-clockwise"></i> Refresh
-            </asp:LinkButton>
         </div>
 
         <%-- Search Filter --%>
@@ -59,7 +71,7 @@
 
                         <asp:TemplateField HeaderText="Status">
                             <ItemTemplate>
-                                <span class="badge bg-success rounded-pill px-3">Checked In</span>
+                                <%# GetStatusBadgeHtml(Eval("OriginalStatus").ToString()) %>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

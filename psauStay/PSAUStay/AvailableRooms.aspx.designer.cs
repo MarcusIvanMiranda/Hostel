@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSAUStay {
-    
-    
-    public partial class AvailableRooms {
-        
+namespace PSAUStay
+{
+
+
+    public partial class AvailableRooms
+    {
+
         /// <summary>
         /// ScriptManager1 control.
         /// </summary>
@@ -20,25 +22,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
-        
-        /// <summary>
-        /// txtCheckIn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCheckIn;
-        
-        /// <summary>
-        /// txtCheckOut control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCheckOut;
-        
+
         /// <summary>
         /// ddlRoomType control.
         /// </summary>
@@ -47,16 +31,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRoomType;
-        
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        
+
         /// <summary>
         /// updRooms control.
         /// </summary>
@@ -65,7 +40,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel updRooms;
-        
+
         /// <summary>
         /// gvRooms control.
         /// </summary>
@@ -74,7 +49,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRooms;
-        
+
         /// <summary>
         /// tmRefresh control.
         /// </summary>
@@ -83,61 +58,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.Timer tmRefresh;
-        
-        /// <summary>
-        /// txtCheckoutDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCheckoutDate;
-        
-        /// <summary>
-        /// btnSearchCheckout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearchCheckout;
-        
-        /// <summary>
-        /// updBookedRooms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel updBookedRooms;
-        
-        /// <summary>
-        /// gvBookedRooms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvBookedRooms;
-        
-        /// <summary>
-        /// calCheckoutDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar calCheckoutDate;
-        
-        /// <summary>
-        /// lblSelectedCheckoutDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSelectedCheckoutDate;
-        
+
         /// <summary>
         /// updCalendar control.
         /// </summary>
@@ -146,5 +67,41 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel updCalendar;
+
+        /// <summary>
+        /// calCheckoutDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calCheckoutDate;
+
+        /// <summary>
+        /// lblSelectedCheckoutDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSelectedCheckoutDate;
+
+        /// <summary>
+        /// updBookedRooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel updBookedRooms;
+
+        /// <summary>
+        /// gvBookedRooms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvBookedRooms;
     }
 }

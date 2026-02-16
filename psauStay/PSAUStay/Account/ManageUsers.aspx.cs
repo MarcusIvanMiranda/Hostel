@@ -65,6 +65,11 @@ namespace PSAUStay.Account
         // ===============================
         private void LoadUsers()
         {
+            LoadUsers(null);
+        }
+
+        private void LoadUsers(string searchTerm)
+        {
             using (SqlConnection con = new SqlConnection(conn))
             {
                 string query = @"SELECT U.UserId, U.FullName, U.Email, R.AccessLevelName
@@ -72,7 +77,20 @@ namespace PSAUStay.Account
                                     LEFT JOIN AccessLevels R 
                                     ON U.Role = R.AccessLevelID";
 
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    query += @" WHERE U.FullName LIKE @SearchTerm 
+                               OR U.Email LIKE @SearchTerm 
+                               OR R.AccessLevelName LIKE @SearchTerm";
+                }
+
                 SqlCommand cmd = new SqlCommand(query, con);
+
+                if (!string.IsNullOrEmpty(searchTerm))
+                {
+                    cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                }
+
                 con.Open();
 
                 gvUsers.DataSource = cmd.ExecuteReader();
@@ -88,7 +106,7 @@ namespace PSAUStay.Account
         {
             lblModalTitle.Text = "Add User";
             ClearFields();
-            pnlModal.Visible = true;
+            hfModalVisible.Value = "true";
         }
 
 
@@ -142,7 +160,7 @@ namespace PSAUStay.Account
                 }
             }
 
-            pnlModal.Visible = false;
+            hfModalVisible.Value = "false";
             LoadUsers();
         }
 
@@ -191,7 +209,7 @@ namespace PSAUStay.Account
 
                     txtPassword.Enabled = false;  // password not editable here
 
-                    pnlModal.Visible = true;
+                    hfModalVisible.Value = "true";
                 }
             }
         }
@@ -218,7 +236,7 @@ namespace PSAUStay.Account
         // ===============================
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            pnlModal.Visible = false;
+            hfModalVisible.Value = "false";
             ClearFields();
         }
 
@@ -259,5 +277,23 @@ namespace PSAUStay.Account
                 return Convert.ToBase64String(hashBytes);
             }
         }
+
+        // ===============================
+        // SEARCH BUTTON CLICK
+        // ===============================
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            LoadUsers(string.IsNullOrEmpty(searchTerm) ? null : searchTerm);
+        }
+
+        // ===============================
+        // CLEAR BUTTON CLICK
+        // ===============================
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            LoadUsers();
+        }
     }
-}
+}   
