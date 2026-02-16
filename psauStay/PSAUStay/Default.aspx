@@ -11,7 +11,7 @@
                     <i class="bi bi-calendar-check me-2"></i>Book Your Stay Now
                 </a>
                 <a href='<%= ResolveUrl("~/RoomList.aspx") %>' class="btn btn-outline-light btn-lg shadow-lg">
-                    <i class="bi bi-door-open me-2"></i>View All Rooms
+                    <i class="bi bi-door-open me-2"></i>TIGNAN MOKO SA SALAMIN
                 </a>
             </div>
         </div>
