@@ -1,0 +1,163 @@
+﻿    <!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PSAU Stay | Room Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <style>
+        :root {
+            --psau-green: #1B5E20;
+            --psau-gold: #F9A825;
+            --psau-dark-green: #0D3B10;
+            --psau-light-bg: #f8f9fa;
+            --psau-text: #2d3436;
+        }
+
+        html, body { height: 100%; }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--psau-light-bg);
+            color: var(--psau-text);
+            padding-top: 75px; 
+            /* Added padding-bottom so content doesn't get hidden behind the fixed footer */
+            padding-bottom: 130px; 
+        }
+
+        #form1 {
+            display: flex;
+            flex-direction: column;
+            flex: 1 0 auto;
+        }
+
+        .main-content-wrapper { 
+            flex: 1 0 auto;
+            padding-bottom: 100px;
+        }
+
+        /* Navbar Styling */
+        .navbar-custom {
+            background: linear-gradient(135deg, var(--psau-green), var(--psau-dark-green));
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 0.8rem 0;
+            z-index: 1030;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            color: #fff !important;
+        }
+
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--psau-gold) !important;
+        }
+
+        .nav-link.active {
+            color: var(--psau-gold) !important;
+            font-weight: 700;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--psau-gold);
+            border-radius: 2px;
+        }
+
+        /* Fixed Footer Styling */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1030;
+            background: var(--psau-green);
+            color: #fff;
+            padding: 25px 0; /* Reduced padding slightly for better fixed view */
+            border-top: 5px solid var(--psau-gold);
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo-bg-highlight {
+            filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.3));
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href='<%= ResolveUrl("~/Default.aspx") %>'>
+                    <img src='<%= ResolveUrl("~/images/psau-logo.png") %>' alt="PSAU" width="40" class="me-2 logo-bg-highlight" />
+                    <span>PAMS</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="bi bi-list text-white fs-2"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto" id="mainNav">
+                        <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/Default.aspx") %>'>Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/Default.aspx#rooms") %>'>Rooms</a></li>
+                        <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/Booking.aspx") %>'>Booking</a></li>
+                        <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/About.aspx") %>'>About</a></li>
+                        <li class="nav-item"><a class="nav-link" href='<%= ResolveUrl("~/Login") %>'>Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-content-wrapper">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <footer>
+            <div class="container text-center">     
+                <p class="mb-1 fw-bold">Pampanga State Agricultural University</p>
+                <p class="mb-0 opacity-75 small">&copy; <%: DateTime.Now.Year %> PSAU Stay | Room Reservation System. All Rights Reserved.</p>
+            </div>
+        </footer>
+    </form>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const currentPath = window.location.pathname.toLowerCase();
+            const navLinks = document.querySelectorAll('#mainNav .nav-link');
+
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href').toLowerCase();
+                link.classList.remove('active');
+
+                if (currentPath.includes(linkPath.replace('~/', '')) && linkPath !== "/") {
+                    link.classList.add('active');
+                }
+                
+                if ((currentPath === "/" || currentPath.endsWith("default.aspx")) && (linkPath.endsWith("default.aspx") || linkPath === "/")) {
+                    if (!link.getAttribute('href').includes("#")) {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

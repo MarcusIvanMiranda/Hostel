@@ -1,0 +1,633 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{87F6BFCC-5610-4EC1-A635-6DE152F4E563}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PSAUStay</RootNamespace>
+    <AssemblyName>PSAUStay</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <UpgradeBackupLocation />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Web.Resources.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Web.v17.1, Version=17.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="AccessDenied.aspx" />
+    <Content Include="Account\AccessLevel.aspx" />
+    <Content Include="Account\GenerateAdmin.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Logout.aspx" />
+    <Content Include="Account\ManageUsers.aspx" />
+    <Content Include="Account\Registration.aspx" />
+    <Content Include="Account\ChangePassword.aspx" />
+    <Content Include="Account\ResetPassword.aspx" />
+    <Content Include="Admin\ActiveGuest.aspx" />
+    <Content Include="Admin\AddMaintenanceRequest.aspx" />
+    <Content Include="Admin\AddRoom.aspx" />
+    <Content Include="Admin\AvailableRooms.aspx" />
+    <Content Include="Admin\BookReservation.aspx" />
+    <Content Include="Admin\Checkout.aspx" />
+    <Content Include="Admin\ConfirmGuestDetails.aspx" />
+    <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="Admin\EditRoom.aspx" />
+    <Content Include="Admin\GuestDetails.aspx" />
+    <Content Include="Admin\GuestList.aspx" />
+    <Content Include="Admin\Maintenance.aspx" />
+    <Content Include="Admin\ManageRooms.aspx" />
+    <Content Include="Admin\NotifyHousekeeping.aspx" />
+    <Content Include="Admin\Reservations.aspx" />
+    <Content Include="Admin\RoomList.aspx" />
+    <Content Include="Admin\RoomRequest.aspx" />
+    <Content Include="Admin\RoomStatus.aspx" />
+    <Content Include="Admin\RoomUnits.aspx" />
+    <Content Include="Admin\ViewReservation.aspx" />
+    <Content Include="Admin\ManageUsers.aspx" />
+    <Content Include="Admin\WaitList.aspx" />
+    <Content Include="AvailableRooms.aspx" />
+    <Content Include="bin\DevExpress.Data.v17.1.dll" />
+    <Content Include="bin\DevExpress.Printing.v17.1.Core.dll" />
+    <Content Include="bin\DevExpress.RichEdit.v17.1.Core.dll" />
+    <Content Include="bin\DevExpress.Web.ASPxThemes.v17.1.dll" />
+    <Content Include="bin\DevExpress.Web.Resources.v17.1.dll" />
+    <Content Include="bin\DevExpress.Web.v17.1.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.dll" />
+    <Content Include="bin\Microsoft.AspNet.FriendlyUrls.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\PSAUStay.dll" />
+    <Content Include="bin\PSAUStay.pdb" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="Booking.aspx" />
+    <Content Include="BookingSuccess.aspx" />
+    <Content Include="HouseKeeper\HouseKeeperDashboard.aspx" />
+    <Content Include="HouseKeeper\CleaningSchedule.aspx" />
+    <Content Include="HouseKeeper\Maintenance.aspx" />
+    <Content Include="HouseKeeper\Reports.aspx" />
+    <Content Include="HouseKeeper\Reports_clean.aspx" />
+    <Content Include="HouseKeeper\Reports_temp.aspx" />
+    <Content Include="HouseKeeper\ViewAllMaintenance.aspx" />
+    <Content Include="Images\Background01.jpg" />
+    <Content Include="Images\hostel.jpg" />
+    <Content Include="Images\hostelbackground.jpg" />
+    <Content Include="Images\igps-09762.jpg" />
+    <Content Include="ConfirmReservation.aspx" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\psau-logo.png" />
+    <Content Include="OnlineBooking.aspx" />
+    <Content Include="RoomDetails.aspx" />
+    <Content Include="RoomImages\Room_14_1.jpg" />
+    <Content Include="RoomImages\Room_14_1.png" />
+    <Content Include="RoomImages\Room_14_3.jpg" />
+    <Content Include="RoomImages\Room_14_5.jpg" />
+    <Content Include="RoomImages\Room_1_1.png" />
+    <Content Include="RoomImages\Room_1_3.jpg" />
+    <Content Include="RoomImages\Room_1_4.jpg" />
+    <Content Include="RoomImages\Room_1_5.jpg" />
+    <Content Include="RoomImages\Room_2_1.jpg" />
+    <Content Include="RoomImages\Room_2_2.jpg" />
+    <Content Include="RoomImages\Room_2_3.jpg" />
+    <Content Include="RoomImages\Room_3_1.jpg" />
+    <Content Include="RoomImages\Room_3_2.jpg" />
+    <Content Include="RoomImages\Room_3_3.jpg" />
+    <Content Include="RoomImages\Room_3_4.jpg" />
+    <Content Include="RoomImages\Room_3_5.jpg" />
+    <Content Include="RoomImages\Room_4_1.jpg" />
+    <Content Include="RoomImages\Room_5_1.jpg" />
+    <Content Include="RoomImages\Room_6_1.jpg" />
+    <Content Include="RoomImages\Room_7_1.jpg" />
+    <Content Include="RoomImages\Room_8_1.jpg" />
+    <Content Include="RoomImages\Room_9_1.jpg" />
+    <Content Include="RoomImages\Room_9_2.jpg" />
+    <Content Include="RoomImages\Room_9_3.png" />
+    <Content Include="RoomImages\Room_9_5.jpg" />
+    <Content Include="Rooms.aspx" />
+    <Content Include="UploadPayment.aspx" />
+    <Content Include="Images\location.jpg" />
+    <Content Include="Uploads\OnlinePayments\2022_Acer_Consumer_Option_01_3840x2400.jpg" />
+    <Content Include="Uploads\OnlinePayments\2022_Acer_Consumer_Option_03_3840x2400.jpg" />
+    <Content Include="Uploads\OnlinePayments\433af85d-6fc9-4a9a-bda1-0f02fefa6637.jpg" />
+    <Content Include="Uploads\PaymentProofs\433af85d-6fc9-4a9a-bda1-0f02fefa6637.jpg" />
+    <Content Include="Uploads\PaymentProofs\igps-09807.jpg" />
+    <Content Include="Uploads\PaymentProofs\igps-09808.jpg" />
+    <Content Include="Uploads\Rooms\Family\20251023114951_igps-09806.jpg" />
+    <Content Include="Uploads\Rooms\Family\20251023114951_igps-09808.jpg" />
+    <Content Include="Uploads\Rooms\Family\20251023114951_igps-09812.jpg" />
+    <Content Include="Uploads\Rooms\Family\20251023114951_igps-09814.jpg" />
+    <Content Include="Uploads\Rooms\Family\20251023114951_igps-09816.jpg" />
+    <Content Include="WebForm1.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Site.Master" />
+    <Content Include="packages.config" />
+    <Content Include="Site.Mobile.Master" />
+    <Content Include="AdminControl.master" />
+    <Content Include="HouseKeeper\HouseKeeperControl.master" />
+    <Content Include="bin\PSAUStay.dll.config" />
+    <Content Include="RoomImages\Room_14_1.webp" />
+    <Content Include="RoomImages\Room_1_2.webp" />
+    <Content Include="RoomImages\Room_1_5.webp" />
+    <Content Include="RoomImages\Room_9_4.webp" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AccessDenied.aspx.designer.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\AccessLevel.aspx.cs">
+      <DependentUpon>AccessLevel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\AccessLevel.aspx.designer.cs">
+      <DependentUpon>AccessLevel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\GenerateAdmin.aspx.cs">
+      <DependentUpon>GenerateAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\GenerateAdmin.aspx.designer.cs">
+      <DependentUpon>GenerateAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Registration.aspx.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Registration.aspx.designer.cs">
+      <DependentUpon>Registration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminControl.master.cs">
+      <DependentUpon>AdminControl.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminControl.master.designer.cs">
+      <DependentUpon>AdminControl.master</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ActiveGuest.aspx.cs">
+      <DependentUpon>ActiveGuest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ActiveGuest.aspx.designer.cs">
+      <DependentUpon>ActiveGuest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddMaintenanceRequest.aspx.cs">
+      <DependentUpon>AddMaintenanceRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddMaintenanceRequest.aspx.designer.cs">
+      <DependentUpon>AddMaintenanceRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddRoom.aspx.cs">
+      <DependentUpon>AddRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddRoom.aspx.designer.cs">
+      <DependentUpon>AddRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AvailableRooms.aspx.cs">
+      <DependentUpon>AvailableRooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AvailableRooms.aspx.designer.cs">
+      <DependentUpon>AvailableRooms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\BookReservation.aspx.cs">
+      <DependentUpon>BookReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkout.aspx.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Checkout.aspx.designer.cs">
+      <DependentUpon>Checkout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ConfirmGuestDetails.aspx.cs">
+      <DependentUpon>ConfirmGuestDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ConfirmGuestDetails.aspx.designer.cs">
+      <DependentUpon>ConfirmGuestDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditRoom.aspx.cs">
+      <DependentUpon>EditRoom.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditRoom.aspx.designer.cs">
+      <DependentUpon>EditRoom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GuestDetails.aspx.cs">
+      <DependentUpon>GuestDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GuestDetails.aspx.designer.cs">
+      <DependentUpon>GuestDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\GuestList.aspx.cs">
+      <DependentUpon>GuestList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\GuestList.aspx.designer.cs">
+      <DependentUpon>GuestList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageRooms.aspx.cs">
+      <DependentUpon>ManageRooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageRooms.aspx.designer.cs">
+      <DependentUpon>ManageRooms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\NotifyHousekeeping.aspx.cs">
+      <DependentUpon>NotifyHousekeeping.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\NotifyHousekeeping.aspx.designer.cs">
+      <DependentUpon>NotifyHousekeeping.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Reservations.aspx.cs">
+      <DependentUpon>Reservations.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Reservations.aspx.designer.cs">
+      <DependentUpon>Reservations.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RoomList.aspx.cs">
+      <DependentUpon>RoomList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RoomList.aspx.designer.cs">
+      <DependentUpon>RoomList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RoomRequest.aspx.cs">
+      <DependentUpon>RoomRequest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RoomRequest.aspx.designer.cs">
+      <DependentUpon>RoomRequest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RoomStatus.aspx.cs">
+      <DependentUpon>RoomStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RoomStatus.aspx.designer.cs">
+      <DependentUpon>RoomStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RoomUnits.aspx.cs">
+      <DependentUpon>RoomUnits.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\RoomUnits.aspx.designer.cs">
+      <DependentUpon>RoomUnits.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ViewReservation.aspx.cs">
+      <DependentUpon>ViewReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ViewReservation.aspx.designer.cs">
+      <DependentUpon>ViewReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\WaitList.aspx.cs">
+      <DependentUpon>WaitList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\WaitList.aspx.designer.cs">
+      <DependentUpon>WaitList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AvailableRooms.aspx.cs">
+      <DependentUpon>AvailableRooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AvailableRooms.aspx.designer.cs">
+      <DependentUpon>AvailableRooms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Booking.aspx.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Booking.aspx.designer.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BookingSuccess.aspx.cs">
+      <DependentUpon>BookingSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BookingSuccess.aspx.designer.cs">
+      <DependentUpon>BookingSuccess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ConfirmReservation.aspx.cs">
+      <DependentUpon>ConfirmReservation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ConfirmReservation.aspx.designer.cs">
+      <DependentUpon>ConfirmReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\Helpers\Helper.cs" />
+    <Compile Include="HouseKeeper\HouseKeeperControl.master.cs">
+      <DependentUpon>HouseKeeperControl.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\HouseKeeperControl.master.designer.cs">
+      <DependentUpon>HouseKeeperControl.master</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeper\HouseKeeperDashboard.aspx.cs">
+      <DependentUpon>HouseKeeperDashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\HouseKeeperDashboard.aspx.designer.cs">
+      <DependentUpon>HouseKeeperDashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeper\CleaningSchedule.aspx.cs">
+      <DependentUpon>CleaningSchedule.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\CleaningSchedule.aspx.designer.cs">
+      <DependentUpon>CleaningSchedule.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeper\Maintenance.aspx.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\Maintenance.aspx.designer.cs">
+      <DependentUpon>Maintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeper\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HouseKeeper\ViewAllMaintenance.aspx.cs">
+      <DependentUpon>ViewAllMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HouseKeeper\ViewAllMaintenance.aspx.designer.cs">
+      <DependentUpon>ViewAllMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="OnlineBooking.aspx.cs">
+      <DependentUpon>OnlineBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="OnlineBooking.aspx.designer.cs">
+      <DependentUpon>OnlineBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomDetails.aspx.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RoomDetails.aspx.designer.cs">
+      <DependentUpon>RoomDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Rooms.aspx.cs">
+      <DependentUpon>Rooms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Rooms.aspx.designer.cs">
+      <DependentUpon>Rooms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Mobile.Master.designer.cs">
+      <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="UploadPayment.aspx.cs">
+      <DependentUpon>UploadPayment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UploadPayment.aspx.designer.cs">
+      <DependentUpon>UploadPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewSwitcher.ascx.designer.cs">
+      <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reservation\" />
+    <Folder Include="Services\" />
+    <Folder Include="Uploads\BG\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>24721</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:24721/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

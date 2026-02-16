@@ -1,0 +1,274 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminControl.master.cs" Inherits="PSAUStay.AdminControl" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PSAU Stay | Admin Panel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --psau-green: #0b6623;
+            --psau-green-dark: #074217;
+            --psau-gold: #f1c40f;
+            --psau-gold-hover: #d4ac0d;
+            --sidebar-width: 260px;
+            --transition-speed: 0.3s;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Inter', "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            height: 100vh;
+            background: linear-gradient(180deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);
+            color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            padding: 20px 0;
+            overflow-y: auto;
+            transition: transform var(--transition-speed) ease-in-out;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.15);
+            z-index: 1050;
+        }
+
+        .sidebar h4 {
+            color: var(--psau-gold);
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            padding: 10px 20px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            padding: 12px 25px;
+            text-decoration: none;
+            transition: all var(--transition-speed);
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+        }
+
+        .sidebar a:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.1);
+            padding-left: 30px;
+        }
+
+        .sidebar a.active {
+            background-color: rgba(255,255,255,0.15);
+            color: var(--psau-gold);
+            border-left: 4px solid var(--psau-gold);
+            font-weight: 700;
+        }
+
+        /* Dropdown Indicators */
+        .sidebar a[data-bs-toggle="collapse"] i.bi-caret-down-fill {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+
+        .sidebar a[aria-expanded="true"] i.bi-caret-down-fill {
+            transform: rotate(180deg);
+        }
+
+        /* Submenu Styling */
+        .sidebar .collapse {
+            background-color: rgba(0,0,0,0.1);
+        }
+
+        .sidebar .collapse a {
+            padding-left: 50px;
+            font-size: 0.85rem;
+            border-left: none;
+        }
+
+        /* Content Area */
+        .content {
+            margin-left: var(--sidebar-width);
+            padding: 40px;
+            transition: margin-left var(--transition-speed);
+            min-height: 100vh;
+        }
+
+        /* Mobile Toggle Button */
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: var(--psau-gold);
+            color: var(--psau-green);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-weight: bold;
+            z-index: 2001;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .menu-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+        }
+
+        /* Mobile Viewport Styles */
+        @media (max-width: 991px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                padding: 80px 20px 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Logout Link */
+        .logout-btn {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px !important;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <button class="menu-toggle" type="button" onclick="toggleSidebar()">
+            <i class="bi bi-list"></i> Menu
+        </button>
+
+        <div class="sidebar" id="sidebarMenu">
+            <h4 class="text-center">Control Panel</h4>
+
+            <!-- Admin Profile Section -->
+            <div class="admin-profile text-center mb-4 px-3">
+                <div class="admin-avatar mb-3">
+                    <i class="bi bi-person-circle" style="font-size: 3rem; color: var(--psau-gold);"></i>
+                </div>
+                <div class="admin-info">
+                    <h6 class="text-white mb-1" style="font-weight: 600;">
+                        <%= Session["FullName"] != null ? Session["FullName"].ToString() : "Admin User" %>
+                    </h6>
+                    <small class="text-warning">
+                        <%= GetRoleDisplayName() %>
+                    </small>
+                </div>
+            </div>
+
+            <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class='<%= Request.Url.AbsolutePath.EndsWith("Dashboard.aspx") ? "active" : "" %>'>
+                <i class="bi bi-grid-1x2-fill me-2"></i> Dashboard
+            </a>
+
+            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#frontdeskMenu" role="button" aria-expanded="false">
+                <span><i class="bi bi-person-badge-fill me-2"></i> Front Desk</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="frontdeskMenu">
+                <a href="<%= ResolveUrl("~/Admin/ActiveGuest.aspx") %>" class='<%= Request.Url.AbsolutePath.EndsWith("ActiveGuest.aspx") ? "active" : "" %>'>Active Guests</a>
+                <a href="<%= ResolveUrl("~/Admin/Checkout.aspx") %>">Checkout</a>
+                <a href="<%= ResolveUrl("~/Admin/BookReservation.aspx") %>" class='<%= Request.Url.AbsolutePath.EndsWith("BookReservation.aspx") ? "active" : "" %>'>Book Reservation</a>
+            </div>
+
+            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#reservationMenu" role="button" aria-expanded="false">
+                <span><i class="bi bi-calendar-check-fill me-2"></i> Reservation</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="reservationMenu">
+                <a href="<%= ResolveUrl("~/Admin/ViewReservation.aspx") %>" class='<%= Request.Url.AbsolutePath.Contains("ViewReservation.aspx") ? "active" : "" %>'>View All Bookings</a>
+                <a href="<%= ResolveUrl("~/Admin/WaitList.aspx") %>">Waitlist</a>
+            </div>
+
+            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#roomMenu" role="button" aria-expanded="false">
+                <span><i class="bi bi-door-closed-fill me-2"></i> Rooms</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="roomMenu">
+                <a href="<%= ResolveUrl("~/Admin/ManageRooms.aspx") %>">Manage Rooms</a>
+                <a href="<%= ResolveUrl("~/Admin/RoomUnits.aspx") %>">Update Room Units</a>
+                <a href="<%= ResolveUrl("~/AvailableRooms.aspx") %>">Available Rooms</a>
+            </div>
+
+            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#guestMenu" role="button" aria-expanded="false">
+                <span><i class="bi bi-people-fill me-2"></i> Guests</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="guestMenu">
+                <a href="<%= ResolveUrl("~/Admin/GuestList.aspx") %>">Guest List</a>
+                <a href="<%= ResolveUrl("~/Admin/GuestDetails.aspx") %>">Guest Details</a>
+            </div>
+
+            <a class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#housekeepingMenu" role="button" aria-expanded="false">
+                <span><i class="bi bi-stars me-2"></i> Housekeeping</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="housekeepingMenu">
+                <a href="<%= ResolveUrl("~/Admin/Maintenance.aspx") %>">Maintenance</a>
+                <a href="<%= ResolveUrl("~/Admin/RoomStatus.aspx") %>">Room Status</a>
+                <a href="<%= ResolveUrl("~/Admin/NotifyHousekeeping.aspx") %>">Notify Housekeeping</a>
+            </div>
+
+            <a id="securityMenuToggle" class="d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#securityMenu" role="button" aria-expanded="false" runat="server">
+                <span><i class="bi bi-shield-lock-fill me-2"></i> Security</span>
+                <i class="bi bi-caret-down-fill"></i>
+            </a>
+            <div class="collapse" id="securityMenu">
+                <a href="../Account/ManageUsers.aspx">Manage Users</a>
+                <a href="../Account/AccessLevel.aspx">Roles</a>
+            </div>
+
+            <a href="../Account/Login.aspx" class="logout-btn text-warning fw-bold text-center">
+                <i class="bi bi-box-arrow-right me-2"></i> Logout
+            </a>
+        </div>
+
+        <div class="content">
+            <asp:ContentPlaceHolder ID="AdminMainContent" runat="server" />
+        </div>
+
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebarMenu').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>

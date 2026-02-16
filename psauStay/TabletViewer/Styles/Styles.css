@@ -1,0 +1,95 @@
+﻿body
+{
+    background-image: url("../Images/background.png");
+}
+.simulator
+{
+    position:relative;
+    margin:auto;
+    margin-top:-30px;
+}
+.portrait .simulator
+{
+    width:994px;
+    height:1264px;
+    background-image:url("../Images/iPadPortrait.png");
+}
+.landscape .simulator
+{
+    width:1264px;
+    height:994px;
+    background-image:url("../Images/iPadLandscape.png");
+}
+.simulator iframe
+{
+    border:none;
+    position:relative;
+}
+.landscape .simulator iframe
+{
+    width:1024px;
+    height: 748px;
+    left: 120px;
+    top: 132px;
+}
+.portrait .simulator iframe
+{
+height: 1004px;
+    left: 113px;
+    top: 140px;
+    width: 768px;
+}
+.qrcode
+{
+    position:absolute;
+    left:30px;
+    top:30px;
+    width:140px;
+    height:140px;
+}
+.qrcode img
+{
+    width:140px;
+    height:140px;
+    border-width: 0;
+}
+.hint
+{
+    padding: 10px 10px 0;
+    color:#a6a6a6;
+    font: 12px Tahoma;
+    text-align: center;
+}
+.switcher
+{
+    position:absolute;
+    right:30px;
+    top:30px;
+    width:88px;
+    height:47px;
+}
+.switcher > div
+{
+    float:left;
+    cursor: pointer;
+}
+.switcherLandscape
+{
+    width:47px;
+    height:41px;
+    background-image:url("../Images/iPadLandscapeSmall.png");
+}
+.landscape .switcherLandscape
+{
+    background-image:url("../Images/iPadLandscapeSmallActive.png");
+}
+.switcherPortrait
+{
+    width:41px;
+    height:47px;
+    background-image:url("../Images/iPadPortraitSmall.png");
+}
+.portrait .switcherPortrait
+{
+    background-image:url("../Images/iPadPortraitSmallActive.png");
+}

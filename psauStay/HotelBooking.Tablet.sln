@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "HotelBooking.Tablet", ".", "{3F19F73E-BADE-43D9-9F0D-123256ABAF30}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/HotelBooking.Tablet"
+		Debug.AspNetCompiler.PhysicalPath = ".\"
+		Debug.AspNetCompiler.TargetPath = "..\PrecompiledWeb\HotelBooking.Tablet\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/HotelBooking.Tablet"
+		Release.AspNetCompiler.PhysicalPath = ".\"
+		Release.AspNetCompiler.TargetPath = "..\PrecompiledWeb\HotelBooking.Tablet\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "50325"
+		SlnRelativePath = ".\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Debug|.NET.Build.0 = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Release|.NET.ActiveCfg = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Release|.NET.Build.0 = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F19F73E-BADE-43D9-9F0D-123256ABAF30}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
