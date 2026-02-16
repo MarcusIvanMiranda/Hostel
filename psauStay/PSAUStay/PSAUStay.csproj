@@ -24,6 +24,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <UpgradeBackupLocation />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -330,6 +331,9 @@
     <Compile Include="Admin\BookReservation.aspx.cs">
       <DependentUpon>BookReservation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\BookReservation.aspx.designer.cs">
+      <DependentUpon>BookReservation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Checkout.aspx.cs">
       <DependentUpon>Checkout.aspx</DependentUpon>

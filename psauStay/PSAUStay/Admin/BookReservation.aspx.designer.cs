@@ -7,10 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSAUStay.Admin {
-    
-    
-    public partial class BookReservation {
+namespace PSAUStay.Admin
+{
+
+
+    public partial class BookReservation
+    {
 
         /// <summary>
         /// btnRefresh control.
@@ -82,7 +84,7 @@ namespace PSAUStay.Admin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkShowOnlyPending;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkShowOnlyPending;
 
         /// <summary>
         /// gvUpcomingReservations control.

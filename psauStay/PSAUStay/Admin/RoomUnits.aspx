@@ -1,6 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AdminControl.master" AutoEventWireup="true" CodeBehind="RoomUnits.aspx.cs" Inherits="PSAUStay.Admin.RoomUnits" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="AdminMainContent" runat="server">
-    <h2 class="page-title">Manage Room Numbers</h2>
+    <%-- Green Header --%>
+    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+        <div class="card-body p-4">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="mb-1 fw-bold text-white">
+                        <i class="bi bi-door-open-fill me-2" style="color: var(--psau-gold);"></i>
+                        Manage Room Numbers
+                    </h2>
+                    <p class="mb-0 text-white-50">Update room units and numbers for each room category</p>
+                </div>
+                <div class="col-auto">
+                    <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="card p-4 shadow-sm">
         <div class="row">

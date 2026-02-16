@@ -14,10 +14,17 @@ namespace PSAUStay.Admin
     {
         string cs = ConfigurationManager.ConnectionStrings["PSAUStayConnection"].ConnectionString;
 
+        public int PendingCount { get; set; }
+        public int InProgressCount { get; set; }
+        public int CompletedTodayCount { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 LoadMaintenanceRequests();
+                LoadQuickStats();
+            }
         }
 
         void LoadMaintenanceRequests()
@@ -37,23 +44,44 @@ namespace PSAUStay.Admin
             }
         }
 
-        protected void gvMaintenance_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected string GetStatusBadgeClass(string status)
         {
-            int id = Convert.ToInt32(e.CommandArgument);
-
-            if (e.CommandName == "EditRequest")
-                Response.Redirect($"EditMaintenance.aspx?ID={id}");
-
-            if (e.CommandName == "CompleteRequest")
+            switch (status?.ToLower())
             {
-                using (SqlConnection con = new SqlConnection(cs))
-                {
-                    SqlCommand cmd = new SqlCommand("UPDATE MaintenanceRequests SET Status='Completed', DateUpdated=GETDATE() WHERE MaintenanceID=@ID", con);
-                    cmd.Parameters.AddWithValue("@ID", id);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-                LoadMaintenanceRequests();
+                case "pending":
+                    return "bg-warning";
+                case "in progress":
+                case "inprogress":
+                    return "bg-primary";
+                case "completed":
+                    return "bg-success";
+                case "cancelled":
+                    return "bg-danger";
+                default:
+                    return "bg-secondary";
+            }
+        }
+
+        void LoadQuickStats()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                // Get pending requests count
+                string pendingQuery = "SELECT COUNT(*) FROM MaintenanceRequests WHERE Status = 'Pending'";
+                SqlCommand pendingCmd = new SqlCommand(pendingQuery, con);
+                con.Open();
+                PendingCount = (int)pendingCmd.ExecuteScalar();
+
+                // Get in progress requests count
+                string inProgressQuery = "SELECT COUNT(*) FROM MaintenanceRequests WHERE Status IN ('In Progress', 'Inprogress')";
+                SqlCommand inProgressCmd = new SqlCommand(inProgressQuery, con);
+                InProgressCount = (int)inProgressCmd.ExecuteScalar();
+
+                // Get completed requests count
+                string completedTodayQuery = "SELECT COUNT(*) FROM MaintenanrooceRequests WHERE Status = 'Completed'";
+                SqlCommand completedTodayCmd = new SqlCommand(completedTodayQuery, con);
+                CompletedTodayCount = (int)completedTodayCmd.ExecuteScalar();
+                con.Close();
             }
         }
 
@@ -63,6 +91,5 @@ namespace PSAUStay.Admin
             // Example: redirect to a form or open a modal
             Response.Redirect("AddMaintenanceRequest.aspx");
         }
-
     }
 }
