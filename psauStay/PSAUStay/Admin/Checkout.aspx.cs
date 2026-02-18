@@ -3,6 +3,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace PSAUStay.Admin
 {
@@ -97,6 +100,37 @@ namespace PSAUStay.Admin
                     string tbl = (source == "Online") ? "RoomRequests" : "[dbo].[Reservation]";
                     string col = (source == "Online") ? "RequestID" : "ReservationID";
 
+                    // Get booking details for email
+                    string guestEmail = "";
+                    string guestName = "";
+                    string roomName = "";
+                    DateTime checkInDate = DateTime.MinValue;
+                    DateTime checkOutDate = DateTime.MinValue;
+                    string bookingRef = source + id;
+
+                    // Get booking information
+                    string getBookingInfo = $@"
+                        SELECT {(source == "Online" ? "RQ.Email, RQ.Name" : "GL.Email, ISNULL(GL.FullName, 'Guest') as FullName")}, 
+                               RM.RoomName, RQ.CheckInDate, RQ.CheckOutDate
+                        FROM {tbl} RQ 
+                        JOIN Rooms RM ON RQ.RoomID = RM.RoomID
+                        {(source == "Online" ? "LEFT JOIN GuestList GL ON RQ.Email = GL.Email" : "LEFT JOIN GuestList GL ON RQ.UserID = GL.GuestID")}
+                        WHERE {col} = @ID";
+                    
+                    SqlCommand cmdInfo = new SqlCommand(getBookingInfo, con, trans);
+                    cmdInfo.Parameters.AddWithValue("@ID", id);
+                    using (SqlDataReader reader = cmdInfo.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            guestEmail = reader["Email"].ToString();
+                            guestName = reader[source == "Online" ? "Name" : "FullName"].ToString();
+                            roomName = reader["RoomName"].ToString();
+                            checkInDate = Convert.ToDateTime(reader["CheckInDate"]);
+                            checkOutDate = Convert.ToDateTime(reader["CheckOutDate"]);
+                        }
+                    }
+
                     // 1. Get the UnitID associated with the booking
                     int unitId = 0;
                     if (source == "Online")
@@ -129,13 +163,93 @@ namespace PSAUStay.Admin
                     trans.Commit();
                     BindAllData();
 
-                    ScriptManager.RegisterStartupScript(this, GetType(), "alert", "Swal.fire('Success', 'Checkout complete. Room status is now: To Be Cleaned', 'success');", true);
+                    // Send review email after successful commit
+                    SendReviewEmail(guestEmail, guestName, roomName, checkInDate, checkOutDate, bookingRef);
+
+                    ScriptManager.RegisterStartupScript(this, GetType(), "success", "Swal.fire('Checkout Complete!', 'Thank you for staying with us! A review link has been sent to the customer\'s email.', 'success');", true);
                 }
                 catch (Exception ex)
                 {
                     if (trans.Connection != null) trans.Rollback();
                     ScriptManager.RegisterStartupScript(this, GetType(), "alert", $"Swal.fire('Error', 'Checkout failed: {ex.Message}', 'error');", true);
                 }
+            }
+        }
+
+        private void SendReviewEmail(string email, string guestName, string roomName, DateTime checkInDate, DateTime checkOutDate, string bookingRef)
+        {
+            try
+            {
+                string reviewUrl = $"{Request.Url.Scheme}://{Request.Url.Authority}{ResolveUrl("~/CustomerReview.aspx")}?ref={bookingRef}&email={Server.UrlEncode(email)}&name={Server.UrlEncode(guestName)}&room={Server.UrlEncode(roomName)}&checkin={checkInDate:yyyy-MM-dd}&checkout={checkOutDate:yyyy-MM-dd}";
+                
+                string subject = "Thank You for Staying at PSAU Hostel - Share Your Experience!";
+                string body = $@"
+<html>
+<body style='font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;'>
+    <div style='max-width: 600px; margin: 0 auto; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);'>
+        <div style='text-align: center; margin-bottom: 30px;'>
+            <h1 style='color: #198754; margin: 0;'>PSAU Hostel</h1>
+            <p style='color: #666; margin: 5px 0;'>Thank You for Your Stay!</p>
+        </div>
+        
+        <div style='background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 25px;'>
+            <h3 style='color: #333; margin-top: 0;'>Hello {guestName},</h3>
+            <p style='color: #555; line-height: 1.6;'>
+                Thank you for choosing PSAU Hostel for your recent stay! We hope you had a wonderful experience.
+                Your feedback is very important to us as it helps us improve our services.
+            </p>
+        </div>
+        
+        <div style='background-color: #e8f5e8; padding: 15px; border-radius: 8px; margin-bottom: 25px; border-left: 4px solid #198754;'>
+            <h4 style='color: #333; margin-top: 0;'>Stay Details:</h4>
+            <ul style='color: #555; line-height: 1.6;'>
+                <li><strong>Room:</strong> {roomName}</li>
+                <li><strong>Check-in:</strong> {checkInDate:MMM dd, yyyy}</li>
+                <li><strong>Check-out:</strong> {checkOutDate:MMM dd, yyyy}</li>
+                <li><strong>Booking Reference:</strong> {bookingRef}</li>
+            </ul>
+        </div>
+        
+        <div style='text-align: center; margin: 30px 0;'>
+            <a href='{reviewUrl}' style='background-color: #198754; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>
+                Share Your Experience
+            </a>
+        </div>
+        
+        <div style='text-align: center; color: #888; font-size: 12px; margin-top: 30px;'>
+            <p>This review link will remain active for 30 days.</p>
+            <p>If you didn't stay at PSAU Hostel, please disregard this email.</p>
+        </div>
+    </div>
+</body>
+</html>";
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress(ConfigurationManager.AppSettings["SmtpUser"] ?? "noreply@psauhostel.edu.ph");
+                    mail.To.Add(email);
+                    mail.Subject = subject;
+                    mail.Body = body;
+                    mail.IsBodyHtml = true;
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = ConfigurationManager.AppSettings["SmtpHost"] ?? "smtp.gmail.com";
+                        smtp.Port = int.Parse(ConfigurationManager.AppSettings["SmtpPort"] ?? "587");
+                        smtp.EnableSsl = true;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(
+                            ConfigurationManager.AppSettings["SmtpUser"] ?? "your-email@gmail.com",
+                            ConfigurationManager.AppSettings["SmtpPass"] ?? "your-app-password"
+                        );
+                        smtp.Send(mail);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log email error but don't fail the checkout process
+                System.Diagnostics.Debug.WriteLine($"Email sending failed: {ex.Message}");
             }
         }
     }
