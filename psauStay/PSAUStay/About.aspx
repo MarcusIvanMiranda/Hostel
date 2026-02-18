@@ -98,7 +98,7 @@
 
             <div class="col-md-3">
                 <div class="dev-card text-center p-4">
-                    <div class="dev-avatar bg-warning text-dark mx-auto mb-3">MM</div>
+                    <img src="images/devicons/IVAN.jpg" alt="Marcus Ivan Miranda" class="dev-avatar mx-auto mb-3">
                     <h6 class="fw-bold mb-1">Marcus Ivan Miranda</h6>
                     <span class="badge rounded-pill bg-warning-subtle text-dark border border-warning px-3">Co-Developer</span>
                 </div>
@@ -106,7 +106,7 @@
 
             <div class="col-md-3">
                 <div class="dev-card text-center p-4">
-                    <div class="dev-avatar bg-warning text-dark mx-auto mb-3">KD</div>
+                    <img src="images/devicons/kv.jpg" alt="Kenard Vincent N. Ducut" class="dev-avatar mx-auto mb-3">
                     <h6 class="fw-bold mb-1">Kenard Vincent N. Ducut</h6>
                     <span class="badge rounded-pill bg-warning-subtle text-dark border border-warning px-3">Co-Developer</span>
                 </div>
@@ -170,6 +170,12 @@
             color: white;
             font-size: 1.25rem;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            object-fit: cover;
+        }
+
+        .dev-avatar:not(img) {
+            background-color: var(--bs-warning);
+            color: var(--bs-dark);
         }
 
         /* Feature Cards */

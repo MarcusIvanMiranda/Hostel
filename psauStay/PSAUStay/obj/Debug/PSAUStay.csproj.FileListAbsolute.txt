@@ -20,3 +20,11 @@ C:\Users\mis_d\source\repos\2-18-2026\psauStay\PSAUStay\obj\Debug\PSAUStay.cspro
 C:\Users\mis_d\source\repos\2-18-2026\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CopyComplete
 C:\Users\mis_d\source\repos\2-18-2026\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
 C:\Users\mis_d\source\repos\2-18-2026\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\bin\PSAUStay.dll.config
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\bin\PSAUStay.dll
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\bin\PSAUStay.pdb
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.AssemblyReference.cache
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CoreCompileInputs.cache
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CopyComplete
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
+C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb
