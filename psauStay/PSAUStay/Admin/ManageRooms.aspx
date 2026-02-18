@@ -25,41 +25,43 @@
         </div>
     </div>
 
-    <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="False" CssClass="table table-hover align-middle shadow-sm"
-        OnRowCommand="gvRooms_RowCommand" DataKeyNames="RoomID">
-        <HeaderStyle CssClass="table-primary" />
-        <Columns>
-            <asp:BoundField DataField="RoomID" HeaderText="ID" />
-            <asp:BoundField DataField="RoomName" HeaderText="Room Name" />
-            <asp:BoundField DataField="RoomType" HeaderText="Type" />
-            <asp:BoundField DataField="Capacity" HeaderText="Capacity" />
-            <asp:BoundField DataField="Price" HeaderText="Price (₱)" DataFormatString="{0:N2}" />
+    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+        <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="False" CssClass="table table-hover align-middle shadow-sm"
+            OnRowCommand="gvRooms_RowCommand" DataKeyNames="RoomID" style="min-width: 600px;">
+            <HeaderStyle CssClass="table-primary" />
+            <Columns>
+                <asp:BoundField DataField="RoomID" HeaderText="ID" />
+                <asp:BoundField DataField="RoomName" HeaderText="Room Name" />
+                <asp:BoundField DataField="RoomType" HeaderText="Type" />
+                <asp:BoundField DataField="Capacity" HeaderText="Capacity" />
+                <asp:BoundField DataField="Price" HeaderText="Price (₱)" DataFormatString="{0:N2}" />
 
-            <asp:TemplateField HeaderText="Live Inventory">
-                <ItemTemplate>
-                    <div class="d-flex align-items-center">
-                        <span class='badge <%# Convert.ToInt32(Eval("UnitsAvailable")) > 0 ? "bg-info" : "bg-secondary" %> me-2'>
-                            <%# Eval("UnitsAvailable") %> Units Available
-                        </span>
-                        <asp:Button ID="btnViewUnits" runat="server" Text="View Units" 
-                            CssClass="btn btn-sm btn-outline-primary" 
-                            CommandName="ViewUnits" CommandArgument='<%# Eval("RoomID") %>' />
-                    </div>
-                </ItemTemplate>
-            </asp:TemplateField>
+                <asp:TemplateField HeaderText="Live Inventory">
+                    <ItemTemplate>
+                        <div class="d-flex align-items-center">
+                            <span class='badge <%# Convert.ToInt32(Eval("UnitsAvailable")) > 0 ? "bg-info" : "bg-secondary" %> me-2'>
+                                <%# Eval("UnitsAvailable") %> Units Available
+                            </span>
+                            <asp:Button ID="btnViewUnits" runat="server" Text="View Units" 
+                                CssClass="btn btn-sm btn-outline-primary" 
+                                CommandName="ViewUnits" CommandArgument='<%# Eval("RoomID") %>' />
+                        </div>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Actions">
-                <ItemTemplate>
-                    <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-sm btn-warning me-1"
-                        CommandName="EditRoom" CommandArgument='<%# Eval("RoomID") %>' />
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:Button ID="btnEdit" runat="server" Text="Edit" CssClass="btn btn-sm btn-warning me-1"
+                            CommandName="EditRoom" CommandArgument='<%# Eval("RoomID") %>' />
 
-                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger"
-                        CommandName="DeleteRoom" CommandArgument='<%# Eval("RoomID") %>'
-                        OnClientClick='<%# "return confirmDelete(this, " + Eval("RoomID") + ");" %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+                        <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-sm btn-danger"
+                            CommandName="DeleteRoom" CommandArgument='<%# Eval("RoomID") %>'
+                            OnClientClick='<%# "return confirmDelete(this, " + Eval("RoomID") + ");" %>' />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
 
     <asp:Label ID="lblMessage" runat="server" CssClass="fw-bold mt-3 d-block"></asp:Label>
 

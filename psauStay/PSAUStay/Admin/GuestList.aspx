@@ -47,33 +47,36 @@
             </div>
         </div>
         
-        <asp:GridView ID="gvGuestList" runat="server" CssClass="table table-bordered table-striped"
-            AutoGenerateColumns="False" AllowPaging="True" PageSize="15"
-            OnPageIndexChanging="gvGuestList_PageIndexChanging" 
-            OnRowCommand="gvGuestList_RowCommand"
-            DataKeyNames="BookingID"
-            EmptyDataText="No approved bookings found.">
-            <Columns>
-                <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
-                <asp:BoundField DataField="Email" HeaderText="Email" />
-                <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
-                <asp:BoundField DataField="BookingCount" HeaderText="Bookings" ItemStyle-CssClass="text-center" />
-                <asp:BoundField DataField="AllRooms" HeaderText="Rooms" />
-                <asp:BoundField DataField="FirstCheckIn" HeaderText="First Check-In" DataFormatString="{0:MMM dd, yyyy}" />
-                <asp:BoundField DataField="LastCheckOut" HeaderText="Last Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
-                <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" DataFormatString="₱{0:N2}" ItemStyle-CssClass="text-success fw-bold" />
-                <asp:TemplateField HeaderText="Actions">
-                    <ItemStyle CssClass="text-center" />
-                    <ItemTemplate>
-                        <asp:LinkButton ID="btnViewReview" runat="server" CssClass="btn btn-sm btn-warning" 
-                            CommandName="ViewReview" CommandArgument='<%# Eval("Email") %>'>
-                            <i class="bi bi-eye"></i> View All Bookings
-                        </asp:LinkButton>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
-        </asp:GridView>
+        <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+            <asp:GridView ID="gvGuestList" runat="server" CssClass="table table-bordered table-striped"
+                AutoGenerateColumns="False" AllowPaging="True" PageSize="15"
+                OnPageIndexChanging="gvGuestList_PageIndexChanging" 
+                OnRowCommand="gvGuestList_RowCommand"
+                DataKeyNames="BookingID"
+                EmptyDataText="No approved bookings found."
+                style="min-width: 650px;">
+                <Columns>
+                    <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                    <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
+                    <asp:BoundField DataField="BookingCount" HeaderText="Bookings" ItemStyle-CssClass="text-center" />
+                    <asp:BoundField DataField="AllRooms" HeaderText="Rooms" />
+                    <asp:BoundField DataField="FirstCheckIn" HeaderText="First Check-In" DataFormatString="{0:MMM dd, yyyy}" />
+                    <asp:BoundField DataField="LastCheckOut" HeaderText="Last Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
+                    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" DataFormatString="₱{0:N2}" ItemStyle-CssClass="text-success fw-bold" />
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemStyle CssClass="text-center" />
+                        <ItemTemplate>
+                            <asp:LinkButton ID="btnViewReview" runat="server" CssClass="btn btn-sm btn-warning" 
+                                CommandName="ViewReview" CommandArgument='<%# Eval("Email") %>'>
+                                <i class="bi bi-eye"></i> View All Bookings
+                            </asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
+            </asp:GridView>
+        </div>
     </div>
 
     <div class="modal fade" id="guestDetailsModal" tabindex="-1" aria-hidden="true">

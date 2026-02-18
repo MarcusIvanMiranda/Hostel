@@ -43,8 +43,8 @@
         <div class="card-body p-0">
             <asp:UpdatePanel ID="updRooms" runat="server">
                 <ContentTemplate>
-                    <div class="table-responsive">
-                        <asp:GridView ID="gvRooms" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" GridLines="None">
+                    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                        <asp:GridView ID="gvRooms" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" GridLines="None" style="min-width: 500px;">
                             <HeaderStyle CssClass="table-light border-bottom" />
                             <Columns>
                                 <asp:BoundField DataField="RoomName" HeaderText="Room Name" ItemStyle-CssClass="fw-bold" />
@@ -76,7 +76,7 @@
 
     <asp:Timer ID="tmRefresh" runat="server" Interval="7000" OnTick="tmRefresh_Tick" />
 
-    <div class="row">
+    <div class="row g-3">
         <div class="col-lg-4 mb-4">
             <div class="card shadow-sm border-0 h-100">
                 <div class="card-header bg-white py-3 border-0">
@@ -123,8 +123,8 @@
                 <div class="card-body p-0">
                     <asp:UpdatePanel ID="updBookedRooms" runat="server">
                         <ContentTemplate>
-                            <div class="table-responsive">
-                                <asp:GridView ID="gvBookedRooms" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" GridLines="None" EmptyDataText="<div class='p-4 text-center text-muted'>No checkouts scheduled for this date.</div>">
+                            <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                                <asp:GridView ID="gvBookedRooms" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" GridLines="None" EmptyDataText="<div class='p-4 text-center text-muted'>No checkouts scheduled for this date.</div>" style="min-width: 450px;">
                                     <HeaderStyle CssClass="table-light" />
                                     <Columns>
                                         <asp:BoundField DataField="GuestName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />

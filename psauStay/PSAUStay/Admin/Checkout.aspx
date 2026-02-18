@@ -46,51 +46,55 @@
                     </div>
                 </div>
 
-                <dx:ASPxGridView ID="gvCheckout" runat="server" AutoGenerateColumns="False" KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" OnDataBinding="gvCheckout_DataBinding">
-                    <Columns>
-                        <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
-                        <dx:GridViewDataTextColumn FieldName="RoomNumber" Caption="Room No." />
-                        <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Unit Name" CellStyle-Font-Bold="true" />
-                        <dx:GridViewDataTextColumn FieldName="TotalBill" Caption="Total Bill">
-                            <PropertiesTextEdit DisplayFormatString="PHP {0:N2}" />
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataColumn Caption="Action" Width="150px">
-                            <DataItemTemplate>
-                                <button type="button" class="btn btn-sm btn-primary w-100 fw-bold" 
-                                        data-id='<%# Eval("Source") + "|" + Eval("ID") %>' 
-                                        data-guest='<%# Eval("FullName") %>'
-                                        data-base='<%# Eval("BasePrice") %>'
-                                        data-extra='<%# Eval("ExtraTotal") %>'
-                                        data-details='<%# Eval("ExtraDetails") %>'
-                                        data-payment='<%# Eval("PaymentStatus") %>'
-                                        onclick="confirmCheckout(this)">
-                                    Check-out
-                                </button>
-                            </DataItemTemplate>
-                        </dx:GridViewDataColumn>
-                    </Columns>
-                </dx:ASPxGridView>
+                <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                    <dx:ASPxGridView ID="gvCheckout" runat="server" AutoGenerateColumns="False" KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" OnDataBinding="gvCheckout_DataBinding">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
+                            <dx:GridViewDataTextColumn FieldName="RoomNumber" Caption="Room No." />
+                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Unit Name" CellStyle-Font-Bold="true" />
+                            <dx:GridViewDataTextColumn FieldName="TotalBill" Caption="Total Bill">
+                                <PropertiesTextEdit DisplayFormatString="PHP {0:N2}" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataColumn Caption="Action" Width="150px">
+                                <DataItemTemplate>
+                                    <button type="button" class="btn btn-sm btn-primary w-100 fw-bold" 
+                                            data-id='<%# Eval("Source") + "|" + Eval("ID") %>' 
+                                            data-guest='<%# Eval("FullName") %>'
+                                            data-base='<%# Eval("BasePrice") %>'
+                                            data-extra='<%# Eval("ExtraTotal") %>'
+                                            data-details='<%# Eval("ExtraDetails") %>'
+                                            data-payment='<%# Eval("PaymentStatus") %>'
+                                            onclick="confirmCheckout(this)">
+                                        Check-out
+                                    </button>
+                                </DataItemTemplate>
+                            </dx:GridViewDataColumn>
+                        </Columns>
+                    </dx:ASPxGridView>
+                </div>
             </div>
 
             <div class="tab-pane fade" id="historyContent">
                 <div class="card border-0 shadow-sm">
                     <div class="card-body p-0">
-                        <asp:GridView ID="gvHistory" runat="server" AutoGenerateColumns="False" CssClass="table table-hover mb-0" Width="100%" GridLines="None" EmptyDataText="No past checkouts found.">
-                            <Columns>
-                                <asp:BoundField DataField="FullName" HeaderText="Guest Name" />
-                                <asp:BoundField DataField="RoomNumber" HeaderText="Room No." />
-                                <asp:BoundField DataField="RoomName" HeaderText="Unit Name" />
-                                <asp:BoundField DataField="BasePrice" HeaderText="Room Price" DataFormatString="PHP {0:N2}" />
-                                <asp:BoundField DataField="ExtraTotal" HeaderText="Extras" DataFormatString="PHP {0:N2}" />
-                                <asp:TemplateField HeaderText="Total Collected">
-                                    <ItemTemplate>
-                                        <span class="fw-bold text-success">PHP <%# Eval("TotalBill", "{0:N2}") %></span>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:BoundField DataField="CheckOutDate" HeaderText="Date Processed" DataFormatString="{0:MMM dd, yyyy}" />
-                            </Columns>
-                            <HeaderStyle CssClass="bg-light fw-bold" />
-                        </asp:GridView>
+                        <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                            <asp:GridView ID="gvHistory" runat="server" AutoGenerateColumns="False" CssClass="table table-hover mb-0" Width="100%" GridLines="None" EmptyDataText="No past checkouts found." style="min-width: 600px;">
+                                <Columns>
+                                    <asp:BoundField DataField="FullName" HeaderText="Guest Name" />
+                                    <asp:BoundField DataField="RoomNumber" HeaderText="Room No." />
+                                    <asp:BoundField DataField="RoomName" HeaderText="Unit Name" />
+                                    <asp:BoundField DataField="BasePrice" HeaderText="Room Price" DataFormatString="PHP {0:N2}" />
+                                    <asp:BoundField DataField="ExtraTotal" HeaderText="Extras" DataFormatString="PHP {0:N2}" />
+                                    <asp:TemplateField HeaderText="Total Collected">
+                                        <ItemTemplate>
+                                            <span class="fw-bold text-success">PHP <%# Eval("TotalBill", "{0:N2}") %></span>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="CheckOutDate" HeaderText="Date Processed" DataFormatString="{0:MMM dd, yyyy}" />
+                                </Columns>
+                                <HeaderStyle CssClass="bg-light fw-bold" />
+                            </asp:GridView>
+                        </div>
                     </div>
                 </div>
             </div>

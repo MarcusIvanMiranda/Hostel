@@ -34,47 +34,50 @@
 
         <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
-                <asp:GridView ID="gvWaitlist" runat="server" CssClass="table table-hover mb-0"
-                    GridLines="None" AutoGenerateColumns="False" DataKeyNames="ReservationID">
-                    <HeaderStyle CssClass="bg-light text-muted small text-uppercase fw-bold" />
-                    <Columns>
-                        <asp:BoundField DataField="FullName" HeaderText="Guest Name" />
-                        <asp:BoundField DataField="Email" HeaderText="Email" />
-                        <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
-                        <asp:BoundField DataField="RoomName" HeaderText="Room" />
-                        <asp:BoundField DataField="CheckInDate" HeaderText="Check-In" DataFormatString="{0:MMM dd, yyyy}" />
-                        <asp:BoundField DataField="CheckOutDate" HeaderText="Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
-                        
-                        <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <span class='badge <%# Eval("Status").ToString() == "Pending" ? "bg-warning text-dark" : "bg-info text-dark" %>'>
-                                    <%# Eval("Status") %>
-                                </span>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                    <asp:GridView ID="gvWaitlist" runat="server" CssClass="table table-hover mb-0"
+                        GridLines="None" AutoGenerateColumns="False" DataKeyNames="ReservationID"
+                        style="min-width: 600px;">
+                        <HeaderStyle CssClass="bg-light text-muted small text-uppercase fw-bold" />
+                        <Columns>
+                            <asp:BoundField DataField="FullName" HeaderText="Guest Name" />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
+                            <asp:BoundField DataField="RoomName" HeaderText="Room" />
+                            <asp:BoundField DataField="CheckInDate" HeaderText="Check-In" DataFormatString="{0:MMM dd, yyyy}" />
+                            <asp:BoundField DataField="CheckOutDate" HeaderText="Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
+                            
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <span class='badge <%# Eval("Status").ToString() == "Pending" ? "bg-warning text-dark" : "bg-info text-dark" %>'>
+                                        <%# Eval("Status") %>
+                                    </span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Actions">
-                            <ItemTemplate>
-                                <div class="d-flex gap-2">
-                                    <button type="button" class="btn btn-success btn-sm" 
-                                        data-id='<%# Eval("ReservationID") %>' 
-                                        data-contact='<%# Eval("FullName") %>' 
-                                        data-action="Approve"
-                                        onclick="confirmAction(this)">
-                                        <i class="bi bi-check-lg"></i> Approve
-                                    </button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" 
-                                        data-id='<%# Eval("ReservationID") %>' 
-                                        data-contact='<%# Eval("FullName") %>' 
-                                        data-action="Reject"
-                                        onclick="confirmAction(this)">
-                                        <i class="bi bi-x-lg"></i> Reject
-                                    </button>
-                                </div>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                            <asp:TemplateField HeaderText="Actions">
+                                <ItemTemplate>
+                                    <div class="d-flex gap-2">
+                                        <button type="button" class="btn btn-success btn-sm" 
+                                            data-id='<%# Eval("ReservationID") %>' 
+                                            data-contact='<%# Eval("FullName") %>' 
+                                            data-action="Approve"
+                                            onclick="confirmAction(this)">
+                                            <i class="bi bi-check-lg"></i> Approve
+                                        </button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" 
+                                            data-id='<%# Eval("ReservationID") %>' 
+                                            data-contact='<%# Eval("FullName") %>' 
+                                            data-action="Reject"
+                                            onclick="confirmAction(this)">
+                                            <i class="bi bi-x-lg"></i> Reject
+                                        </button>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

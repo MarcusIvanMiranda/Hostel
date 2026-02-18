@@ -47,36 +47,39 @@
         <%-- Grid Section --%>
         <div class="card border-0 shadow-sm">
             <div class="card-body p-0">
-                <asp:GridView ID="gvActiveGuests" runat="server" AutoGenerateColumns="False" 
-                    CssClass="table table-hover align-middle mb-0" GridLines="None" 
-                    EmptyDataText="No guests are currently checked in matching your search.">
-                    <Columns>
-                        <asp:TemplateField HeaderText="Guest Name">
-                            <ItemTemplate>
-                                <div class="fw-bold"><%# Eval("FullName") %></div>
-                                <small class="badge bg-light text-dark border fw-normal"><%# Eval("Source") %></small>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:BoundField DataField="Email" HeaderText="Email" />
-                        <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
-                        <asp:BoundField DataField="RoomName" HeaderText="Room" />
-                        
-                        <asp:TemplateField HeaderText="Stay Period">
-                            <ItemTemplate>
-                                <i class="bi bi-calendar-check text-muted me-1"></i>
-                                <%# Eval("CheckInDate", "{0:MMM dd}") %> - <%# Eval("CheckOutDate", "{0:MMM dd, yyyy}") %>
-                            </ItemTemplate>
-                        </asp:TemplateField>
+                <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                    <asp:GridView ID="gvActiveGuests" runat="server" AutoGenerateColumns="False" 
+                        CssClass="table table-hover align-middle mb-0" GridLines="None" 
+                        EmptyDataText="No guests are currently checked in matching your search."
+                        style="min-width: 600px;">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Guest Name">
+                                <ItemTemplate>
+                                    <div class="fw-bold"><%# Eval("FullName") %></div>
+                                    <small class="badge bg-light text-dark border fw-normal"><%# Eval("Source") %></small>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
+                            <asp:BoundField DataField="RoomName" HeaderText="Room" />
+                            
+                            <asp:TemplateField HeaderText="Stay Period">
+                                <ItemTemplate>
+                                    <i class="bi bi-calendar-check text-muted me-1"></i>
+                                    <%# Eval("CheckInDate", "{0:MMM dd}") %> - <%# Eval("CheckOutDate", "{0:MMM dd, yyyy}") %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <%# GetStatusBadgeHtml(Eval("OriginalStatus").ToString()) %>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                    <HeaderStyle CssClass="bg-light text-muted small text-uppercase" />
-                </asp:GridView>
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <%# GetStatusBadgeHtml(Eval("OriginalStatus").ToString()) %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                        <HeaderStyle CssClass="bg-light text-muted small text-uppercase" />
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

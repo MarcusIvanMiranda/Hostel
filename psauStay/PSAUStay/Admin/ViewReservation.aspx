@@ -29,37 +29,39 @@
 
             <div class="card border-0 shadow-sm">
                 <div class="card-body p-0">
-                    <dx:ASPxGridView ID="gvAllReservations" runat="server" AutoGenerateColumns="False" KeyFieldName="RequestID" Width="100%" Theme="MaterialCompact" OnPageIndexChanged="gvAllReservations_PageIndexChanged">
-                        <Columns>
-                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" CellStyle-CssClass="fw-bold" />
-                            <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
-                            <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
-                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
-                            <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                            <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                            <dx:GridViewDataTextColumn FieldName="Status" Caption="Status">
-                                <DataItemTemplate>
-                                    <%# GetStatusBadgeHtml(Eval("Status").ToString()) %>
-                                </DataItemTemplate>
-                            </dx:GridViewDataTextColumn>
-                            <dx:GridViewDataTextColumn Caption="Actions" Width="180px">
-                                <DataItemTemplate>
-                                    <div class="d-flex gap-2">
-                                        <a href='ViewReservation.aspx?RequestID=<%# Eval("RequestID") %>' class="btn btn-sm btn-outline-success">
-                                            <i class="bi bi-eye"></i> Details
-                                        </a>
-                                        <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDeleteList('<%# Eval("RequestID") %>', '<%# Eval("FullName") %>')">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </div>
-                                </DataItemTemplate>
-                            </dx:GridViewDataTextColumn>
-                        </Columns>
-                        <Settings ShowFilterRow="false" /> 
-                        <SettingsPager PageSize="10" Position="Bottom">
-                            <PageSizeItemSettings Visible="true" Items="10, 20, 50" ShowAllItem="true" />
-                        </SettingsPager>
-                    </dx:ASPxGridView>
+                    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                        <dx:ASPxGridView ID="gvAllReservations" runat="server" AutoGenerateColumns="False" KeyFieldName="RequestID" Width="100%" Theme="MaterialCompact" OnPageIndexChanged="gvAllReservations_PageIndexChanged">
+                            <Columns>
+                                <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" CellStyle-CssClass="fw-bold" />
+                                <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
+                                <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
+                                <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
+                                <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                                <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                                <dx:GridViewDataTextColumn FieldName="Status" Caption="Status">
+                                    <DataItemTemplate>
+                                        <%# GetStatusBadgeHtml(Eval("Status").ToString()) %>
+                                    </DataItemTemplate>
+                                </dx:GridViewDataTextColumn>
+                                <dx:GridViewDataTextColumn Caption="Actions" Width="180px">
+                                    <DataItemTemplate>
+                                        <div class="d-flex gap-2">
+                                            <a href='ViewReservation.aspx?RequestID=<%# Eval("RequestID") %>' class="btn btn-sm btn-outline-success">
+                                                <i class="bi bi-eye"></i> Details
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="confirmDeleteList('<%# Eval("RequestID") %>', '<%# Eval("FullName") %>')">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </DataItemTemplate>
+                                </dx:GridViewDataTextColumn>
+                            </Columns>
+                            <Settings ShowFilterRow="false" /> 
+                            <SettingsPager PageSize="10" Position="Bottom">
+                                <PageSizeItemSettings Visible="true" Items="10, 20, 50" ShowAllItem="true" />
+                            </SettingsPager>
+                        </dx:ASPxGridView>
+                    </div>
                 </div>
             </div>
         </asp:Panel>

@@ -17,6 +17,28 @@
         .stat-card .card-body { padding: 1.5rem; }
         .stat-card h6 { letter-spacing: 0.5px; }
         .stat-card h2 { font-size: 2.5rem; font-weight: 700; }
+
+        /* Responsive table wrapper */
+        .grid-responsive-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .grid-responsive-wrapper table { min-width: 600px; }
+
+        /* Responsive breakpoints */
+        @media (max-width: 767.98px) {
+            .stat-card h2 { font-size: 1.8rem; }
+            .chart-card { padding: 12px; }
+            #trendChart, #statusChart { max-height: 220px !important; }
+            .container-fluid { padding-left: 10px; padding-right: 10px; }
+            .card-header h5 { font-size: 1rem; }
+            .alert.d-flex { flex-direction: column; gap: 6px; text-align: center; }
+        }
+
+        @media (max-width: 575.98px) {
+            .stat-card h2 { font-size: 1.5rem; }
+            .stat-card .card-body { padding: 1rem; }
+        }
+
+        /* DevExpress grid override for responsiveness */
+        .dxgv { width: 100% !important; }
     </style>
 
     <div class="container-fluid py-4">
@@ -42,7 +64,7 @@
 
         <%-- Analytics Scorecards --%>
         <div class="row g-3 mb-4">
-            <div class="col-md-3">
+            <div class="col-6 col-md-3">
                 <div class="card stat-card total-volume shadow-sm h-100">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Total Volume</h6>
@@ -50,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3">
                 <div class="card stat-card pending-stays shadow-sm h-100">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Pending Stays</h6>
@@ -58,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3">
                 <div class="card stat-card approved-stays shadow-sm h-100">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Approved Stays</h6>
@@ -66,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-6 col-md-3">
                 <div class="card stat-card rejected-stays shadow-sm h-100">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Rejected Stays</h6>
@@ -83,14 +105,14 @@
         </div>
 
         <%-- Charts Section --%>
-        <div class="row mb-4">
-            <div class="col-lg-8">
+        <div class="row mb-4 g-3">
+            <div class="col-12 col-lg-8">
                 <div class="card chart-card shadow-sm">
                     <h6 class="mb-3 fw-bold">Monthly Booking Volume</h6>
                     <canvas id="trendChart" style="max-height: 300px;"></canvas>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-12 col-lg-4">
                 <div class="card chart-card shadow-sm">
                     <h6 class="mb-3 fw-bold">Status Distribution</h6>
                     <canvas id="statusChart" style="max-height: 300px;"></canvas>
@@ -104,29 +126,25 @@
                 <h5 class="mb-0 fw-bold text-success">✅ Approved Stays</h5>
             </div>
             <div class="card-body p-0">
-                <dx:ASPxGridView ID="gvApprovedStays" runat="server" AutoGenerateColumns="False" 
-                    KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
-                    OnDataBinding="gvApprovedStays_DataBinding"
-                    OnHtmlDataCellPrepared="gvApprovedStays_HtmlDataCellPrepared"
-                    OnRowCommand="gvApprovedStays_RowCommand">
-                    <Columns>
-                        <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
-                        <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
-                        <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
-                        <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
-                        <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataTextColumn FieldName="TotalPrice" Caption="Total Price" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
-                        <dx:GridViewDataTextColumn FieldName="Downpayment" Caption="Downpayment (50%)" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
-                        <dx:GridViewDataTextColumn FieldName="PaymentStatus" Caption="Payment Status" />
-                        <dx:GridViewDataColumn Caption="Actions" Width="100px">
-                            <DataItemTemplate>
-                                <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-danger btn-sm" Text="Delete" CommandName="Delete" OnClientClick="return confirm('Are you sure you want to delete this record?');" />
-                            </DataItemTemplate>
-                        </dx:GridViewDataColumn>
-                    </Columns>
-                    <SettingsPager PageSize="10" />
-                </dx:ASPxGridView>
+                <div class="grid-responsive-wrapper">
+                    <dx:ASPxGridView ID="gvApprovedStays" runat="server" AutoGenerateColumns="False" 
+                        KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
+                        OnDataBinding="gvApprovedStays_DataBinding"
+                        OnHtmlDataCellPrepared="gvApprovedStays_HtmlDataCellPrepared">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
+                            <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
+                            <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
+                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
+                            <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataTextColumn FieldName="TotalPrice" Caption="Total Price" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
+                            <dx:GridViewDataTextColumn FieldName="Downpayment" Caption="Downpayment (50%)" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
+                            <dx:GridViewDataTextColumn FieldName="PaymentStatus" Caption="Payment Status" />
+                        </Columns>
+                        <SettingsPager PageSize="10" />
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
 
@@ -136,20 +154,22 @@
                 <h5 class="mb-0 fw-bold text-danger">❌ Rejected Stays</h5>
             </div>
             <div class="card-body p-0">
-                <dx:ASPxGridView ID="gvRejectedStays" runat="server" AutoGenerateColumns="False" 
-                    KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
-                    OnDataBinding="gvRejectedStays_DataBinding">
-                    <Columns>
-                        <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
-                        <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
-                        <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
-                        <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
-                        <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataDateColumn FieldName="DateRequested" Caption="Rejected Date" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                    </Columns>
-                    <SettingsPager PageSize="10" />
-                </dx:ASPxGridView>
+                <div class="grid-responsive-wrapper">
+                    <dx:ASPxGridView ID="gvRejectedStays" runat="server" AutoGenerateColumns="False" 
+                        KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
+                        OnDataBinding="gvRejectedStays_DataBinding">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
+                            <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
+                            <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
+                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
+                            <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataDateColumn FieldName="DateRequested" Caption="Rejected Date" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                        </Columns>
+                        <SettingsPager PageSize="10" />
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
 
@@ -159,20 +179,22 @@
                 <h5 class="mb-0 fw-bold text-success">✅ Recent Checkouts</h5>
             </div>
             <div class="card-body p-0">
-                <dx:ASPxGridView ID="gvRecentCheckouts" runat="server" AutoGenerateColumns="False" 
-                    KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
-                    OnDataBinding="gvRecentCheckouts_DataBinding">
-                    <Columns>
-                        <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
-                        <dx:GridViewDataTextColumn FieldName="RoomNumber" Caption="Room No." />
-                        <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Unit Name" CellStyle-Font-Bold="true" />
-                        <dx:GridViewDataTextColumn FieldName="TotalBill" Caption="Total Collected">
-                            <PropertiesTextEdit DisplayFormatString="PHP {0:N2}" />
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Checkout Date" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy HH:mm" />
-                    </Columns>
-                    <SettingsPager PageSize="10" />
-                </dx:ASPxGridView>
+                <div class="grid-responsive-wrapper">
+                    <dx:ASPxGridView ID="gvRecentCheckouts" runat="server" AutoGenerateColumns="False" 
+                        KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
+                        OnDataBinding="gvRecentCheckouts_DataBinding">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" />
+                            <dx:GridViewDataTextColumn FieldName="RoomNumber" Caption="Room No." />
+                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Unit Name" CellStyle-Font-Bold="true" />
+                            <dx:GridViewDataTextColumn FieldName="TotalBill" Caption="Total Collected">
+                                <PropertiesTextEdit DisplayFormatString="PHP {0:N2}" />
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Checkout Date" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy HH:mm" />
+                        </Columns>
+                        <SettingsPager PageSize="10" />
+                    </dx:ASPxGridView>
+                </div>
             </div>
         </div>
     </div>

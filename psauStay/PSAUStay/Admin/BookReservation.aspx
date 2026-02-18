@@ -29,7 +29,7 @@
 
         <%-- Stats Cards --%>
         <div class="row g-3 mb-4">
-            <div class="col-md-4">
+            <div class="col-6 col-md-4">
                 <div class="card border-0 shadow-sm h-100" style="border-left: 5px solid #0b6623 !important;">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Total Upcoming</h6>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-md-4">
                 <div class="card border-0 shadow-sm h-100" style="border-left: 5px solid #f1c40f !important;">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">This Week</h6>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-6 col-md-4">
                 <div class="card border-0 shadow-sm h-100" style="border-left: 5px solid #3498db !important;">
                     <div class="card-body">
                         <h6 class="text-muted small text-uppercase fw-bold">Next 7 Days</h6>
@@ -59,7 +59,7 @@
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-body">
                 <div class="row g-3 align-items-end">
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6">
                         <label class="form-label fw-bold">Status Filter</label>
                         <asp:DropDownList ID="ddlStatusFilter" runat="server" AutoPostBack="true" CssClass="form-select" OnSelectedIndexChanged="ddlStatusFilter_SelectedIndexChanged">
                             <asp:ListItem Text="All Status" Value="All"></asp:ListItem>
@@ -68,7 +68,7 @@
                             <asp:ListItem Text="Waitlisted" Value="Waitlisted"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6">
                         <label class="form-label fw-bold">Date Range</label>
                         <asp:DropDownList ID="ddlDateRange" runat="server" AutoPostBack="true" CssClass="form-select" OnSelectedIndexChanged="ddlDateRange_SelectedIndexChanged">
                             <asp:ListItem Text="All Upcoming" Value="All"></asp:ListItem>
@@ -78,13 +78,13 @@
                             <asp:ListItem Text="Next 30 Days" Value="Next30Days"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6">
                         <label class="form-label fw-bold">Room Type</label>
                         <asp:DropDownList ID="ddlRoomFilter" runat="server" AutoPostBack="true" CssClass="form-select" OnSelectedIndexChanged="ddlRoomFilter_SelectedIndexChanged">
                             <asp:ListItem Text="All Rooms" Value="All"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3 col-6">
                         <div class="form-check form-switch mt-4">
                             <input class="form-check-input" type="checkbox" id="chkShowOnlyPending" runat="server" autopostback="true" onserverchange="chkShowOnlyPending_ServerChange">
                             <label class="form-check-label fw-bold" for="chkShowOnlyPending">
@@ -107,48 +107,50 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                <dx:ASPxGridView ID="gvUpcomingReservations" runat="server" AutoGenerateColumns="False" 
-                    KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
-                    OnDataBinding="gvUpcomingReservations_DataBinding"
-                    OnHtmlDataCellPrepared="gvUpcomingReservations_HtmlDataCellPrepared"
-                    OnRowCommand="gvUpcomingReservations_RowCommand">
-                    <Columns>
-                        <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" CellStyle-CssClass="fw-bold" />
-                        <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
-                        <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
-                        <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
-                        <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
-                        <dx:GridViewDataTextColumn FieldName="DaysUntilCheckIn" Caption="Days Until Check-In" Width="120px">
-                            <DataItemTemplate>
-                                <span class="badge bg-info text-white">
-                                    <%# Eval("DaysUntilCheckIn") %> days
-                                </span>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="Status" Caption="Status">
-                            <DataItemTemplate>
-                                <%# GetStatusBadgeHtml(Eval("Status").ToString()) %>
-                            </DataItemTemplate>
-                        </dx:GridViewDataTextColumn>
-                        <dx:GridViewDataTextColumn FieldName="TotalPrice" Caption="Total Price" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
-                        <dx:GridViewDataTextColumn FieldName="PaymentStatus" Caption="Payment Status" />
-                        <dx:GridViewDataColumn Caption="Actions" Width="120px">
-                            <DataItemTemplate>
-                                <div class="d-flex gap-1">
-                                    <a href='ViewReservation.aspx?RequestID=<%# Eval("CombinedID") %>' class="btn btn-sm btn-outline-success" title="View Details">
-                                        <i class="bi bi-eye"></i>
-                                    </a>
-                                    <asp:LinkButton ID="btnQuickApprove" runat="server" CssClass="btn btn-sm btn-success" CommandName="QuickApprove" CommandArgument='<%# Eval("CombinedID") %>' title="Quick Approve" Visible='<%# Eval("Status").ToString() == "Pending" %>'>
-                                        <i class="bi bi-check-circle"></i>
-                                    </asp:LinkButton>
-                                </div>
-                            </DataItemTemplate>
-                        </dx:GridViewDataColumn>
-                    </Columns>
-                    <SettingsPager PageSize="15" />
-                    <Settings ShowFilterRow="false" ShowGroupPanel="false" />
-                </dx:ASPxGridView>
+                <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                    <dx:ASPxGridView ID="gvUpcomingReservations" runat="server" AutoGenerateColumns="False" 
+                        KeyFieldName="CombinedID" Width="100%" Theme="MaterialCompact" 
+                        OnDataBinding="gvUpcomingReservations_DataBinding"
+                        OnHtmlDataCellPrepared="gvUpcomingReservations_HtmlDataCellPrepared"
+                        OnRowCommand="gvUpcomingReservations_RowCommand">
+                        <Columns>
+                            <dx:GridViewDataTextColumn FieldName="FullName" Caption="Guest Name" CellStyle-CssClass="fw-bold" />
+                            <dx:GridViewDataTextColumn FieldName="Email" Caption="Email" />
+                            <dx:GridViewDataTextColumn FieldName="Contact" Caption="Contact Number" />
+                            <dx:GridViewDataTextColumn FieldName="RoomName" Caption="Room" />
+                            <dx:GridViewDataDateColumn FieldName="CheckInDate" Caption="Check-In" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataDateColumn FieldName="CheckOutDate" Caption="Check-Out" PropertiesDateEdit-DisplayFormatString="MMM dd, yyyy" />
+                            <dx:GridViewDataTextColumn FieldName="DaysUntilCheckIn" Caption="Days Until Check-In" Width="120px">
+                                <DataItemTemplate>
+                                    <span class="badge bg-info text-white">
+                                        <%# Eval("DaysUntilCheckIn") %> days
+                                    </span>
+                                </DataItemTemplate>
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="Status" Caption="Status">
+                                <DataItemTemplate>
+                                    <%# GetStatusBadgeHtml(Eval("Status").ToString()) %>
+                                </DataItemTemplate>
+                            </dx:GridViewDataTextColumn>
+                            <dx:GridViewDataTextColumn FieldName="TotalPrice" Caption="Total Price" HeaderStyle-HorizontalAlign="Left" CellStyle-HorizontalAlign="Left" />
+                            <dx:GridViewDataTextColumn FieldName="PaymentStatus" Caption="Payment Status" />
+                            <dx:GridViewDataColumn Caption="Actions" Width="120px">
+                                <DataItemTemplate>
+                                    <div class="d-flex gap-1">
+                                        <a href='ViewReservation.aspx?RequestID=<%# Eval("CombinedID") %>' class="btn btn-sm btn-outline-success" title="View Details">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <asp:LinkButton ID="btnQuickApprove" runat="server" CssClass="btn btn-sm btn-success" CommandName="QuickApprove" CommandArgument='<%# Eval("CombinedID") %>' title="Quick Approve" Visible='<%# Eval("Status").ToString() == "Pending" %>'>
+                                            <i class="bi bi-check-circle"></i>
+                                        </asp:LinkButton>
+                                    </div>
+                                </DataItemTemplate>
+                            </dx:GridViewDataColumn>
+                        </Columns>
+                        <SettingsPager PageSize="15" />
+                        <Settings ShowFilterRow="false" ShowGroupPanel="false" />
+                    </dx:ASPxGridView>
+                </div>
                 
                 <div class="text-center py-3" id="divNoRecords" runat="server" visible="false">
                     <i class="bi bi-calendar-x" style="font-size: 3rem; color: #ccc;"></i>
