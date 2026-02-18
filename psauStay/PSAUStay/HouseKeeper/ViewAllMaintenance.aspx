@@ -41,7 +41,7 @@
     
     .filter-item {
         flex: 1;
-        min-width: 200px;
+        min-width: 150px;
     }
     
     .filter-label {
@@ -91,7 +91,8 @@
         background: white;
         border-radius: 0 0 12px 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-        overflow: hidden;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
     
     .status-pending {
@@ -143,6 +144,7 @@
         width: 100%;
         border-collapse: collapse;
         margin: 0;
+        min-width: 650px;
     }
     
     .table-custom th {
@@ -172,6 +174,15 @@
         color: #6c757d;
         font-style: italic;
     }
+
+    @media (max-width: 767.98px) {
+        .filter-item {
+            min-width: 100%;
+        }
+        .maintenance-container {
+            margin: 1rem auto;
+        }
+    }
 </style>
 
 <div class="maintenance-container">
@@ -182,7 +193,7 @@
             <div class="col">
                 <h2 class="mb-1 fw-bold text-white">
                     <i class="bi bi-tools me-2" style="color: var(--psau-gold);"></i>
-                   VIew All Maintenance
+                   View All Maintenance
                 </h2>
                 <p class="mb-0 text-white-50">View All Maintenance Assigned</p>
             </div>
@@ -267,3 +278,4 @@
     </div>
 </div>
 </asp:Content>
+    
