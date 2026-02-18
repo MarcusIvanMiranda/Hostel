@@ -28,3 +28,10 @@ C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.Core
 C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CopyComplete
 C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
 C:\Users\mis_d\source\repos\QWE\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\bin\PSAUStay.dll.config
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\bin\PSAUStay.dll
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\bin\PSAUStay.pdb
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CoreCompileInputs.cache
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CopyComplete
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
+C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb

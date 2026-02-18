@@ -141,6 +141,7 @@
     <Content Include="bin\System.Web.Http.xml" />
     <Content Include="Booking.aspx" />
     <Content Include="BookingSuccess.aspx" />
+    <Content Include="CustomerReview.aspx" />
     <Content Include="HouseKeeper\HouseKeeperDashboard.aspx" />
     <Content Include="HouseKeeper\CleaningSchedule.aspx" />
     <Content Include="HouseKeeper\Maintenance.aspx" />
@@ -475,6 +476,13 @@
     </Compile>
     <Compile Include="ConfirmReservation.aspx.designer.cs">
       <DependentUpon>ConfirmReservation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerReview.aspx.cs">
+      <DependentUpon>CustomerReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomerReview.aspx.designer.cs">
+      <DependentUpon>CustomerReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
