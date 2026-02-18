@@ -3,35 +3,34 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HouseKeeperMainContent" runat="server">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<div class="container-fluid py-4">
-    <%-- Modern Green Header --%>
-    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
-        <div class="card-body p-4">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h2 class="mb-1 fw-bold text-white">
-                        <i class="bi bi-door-open-fill me-2" style="color: var(--psau-gold);"></i>
-                        Occupied Rooms Report
-                    </h2>
-                    <p class="mb-0 text-white-50">Currently active guest stays (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
-                </div>
-                <div class="col-auto">
-                    <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold me-2">
-                        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
-                    </a>
-                    <button type="button" class="btn btn-light shadow-sm fw-bold" data-bs-toggle="modal" data-bs-target="#historyModal">
-                        <i class="bi bi-clock-history me-2"></i> View Past Checkouts
-                    </button>
+    <div class="container-fluid py-4">
+        <%-- Modern Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-door-open-fill me-2" style="color: var(--psau-gold);"></i>
+                            Occupied Rooms Report
+                        </h2>
+                        <p class="mb-0 text-white-50">Currently active guest stays (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
+                    </div>
+                    <div class="col-12 col-md-auto mt-3 mt-md-0 d-flex flex-row flex-wrap gap-2">
+                        <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
+                        <button type="button" class="btn btn-light shadow-sm fw-bold" data-bs-toggle="modal" data-bs-target="#historyModal">
+                            <i class="bi bi-clock-history me-2"></i> View Past Checkouts
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 
-        <div class="row">
+        <div class="row g-3">
             <asp:Repeater ID="rptOccupiedRooms" runat="server">
                 <ItemTemplate>
-                    <div class="col-md-4 mb-4">
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
                         <div class="card border-0 shadow-sm h-100">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -68,8 +67,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="table-responsive">
-                        <asp:GridView ID="gvHKHistory" runat="server" AutoGenerateColumns="False" CssClass="table table-hover border-0" Width="100%">
+                    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+                        <asp:GridView ID="gvHKHistory" runat="server" AutoGenerateColumns="False" CssClass="table table-hover border-0" Width="100%" style="min-width: 500px;">
                             <Columns>
                                 <asp:BoundField DataField="FullName" HeaderText="Guest Name" />
                                 <asp:BoundField DataField="RoomNumber" HeaderText="Unit #" />

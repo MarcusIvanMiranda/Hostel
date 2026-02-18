@@ -60,6 +60,7 @@
             margin: 0;
             border-collapse: separate;
             border-spacing: 0;
+            min-width: 550px;
         }
 
         .modern-table .table thead th {
@@ -71,9 +72,6 @@
             letter-spacing: 0.8px;
             border: none;
             padding: 0.75rem 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
         }
 
         .modern-table .table tbody tr {
@@ -83,12 +81,10 @@
 
         .modern-table .table tbody tr:hover {
             background-color: #f8f9fa;
-            transform: scale(1.01);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
         .modern-table .table tbody td {
-            padding: 0.75rem 0.5rem;
+            padding: 0.75rem 1rem;
             vertical-align: middle;
             border: none;
             color: #495057;
@@ -139,28 +135,12 @@
         .btn-modern-success:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            color: white;
         }
 
         .table-icon {
             font-size: 1.1rem;
             opacity: 0.8;
-        }
-
-        .stats-container {
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        .stats-container .row {
-            display: flex;
-            flex-wrap: wrap;
-            width: 100%;
-            margin: 0;
-        }
-
-        .stats-container .row > div {
-            flex: 1;
-            min-width: 0;
         }
 
         .room-urgent {
@@ -173,13 +153,20 @@
             border-left: 4px solid #f1c40f !important;
         }
 
-        @media (max-width: 768px) {
+        /* Table horizontal scroll */
+        .table-scroll {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 767.98px) {
+            .stats-card h2 { font-size: 1.8rem; }
+            .stats-card h6 { font-size: 0.72rem; }
             .modern-table .table thead th,
             .modern-table .table tbody td {
-                padding: 0.75rem;
+                padding: 0.6rem 0.75rem;
                 font-size: 0.85rem;
             }
-            
             .btn-modern {
                 padding: 0.4rem 1rem;
                 font-size: 0.75rem;
@@ -191,69 +178,64 @@
     <asp:HiddenField ID="hfSelectedID" runat="server" />
     <asp:Button ID="btnHiddenConfirm" runat="server" OnClick="btnMarkDone_Click" Style="display:none;" />
 
-<div class="container-fluid py-4">
-    <%-- Modern Green Header --%>
-    <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
-        <div class="card-body p-4">
-            <div class="row align-items-center">
-                <div class="col">
-                    <h2 class="mb-1 fw-bold text-white">
-                        <i class="bi bi-stars me-2" style="color: var(--psau-gold);"></i>
-                        Cleaning Schedule
-                    </h2>
-                    <p class="mb-0 text-white-50">Manage room sanitation and maintenance tasks (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
-                </div>
-                <div class="col-auto">
-                    <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
-                        <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-        <!-- Statistics Cards -->
-        <div class="row mb-4">
-            <div class="stats-container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card stats-card pending-cleaning shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="text-muted small text-uppercase fw-bold">Pending Cleaning</h6>
-                                <h2 class="mb-0 fw-bold" style="color: #f1c40f;" id="pendingCount">0</h2>
-                            </div>
-                        </div>
+    <div class="container-fluid py-4">
+        <%-- Modern Green Header --%>
+        <div class="card shadow-sm border-0 mb-4" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
+            <div class="card-body p-4">
+                <div class="row align-items-center">
+                    <div class="col">
+                        <h2 class="mb-1 fw-bold text-white">
+                            <i class="bi bi-stars me-2" style="color: var(--psau-gold);"></i>
+                            Cleaning Schedule
+                        </h2>
+                        <p class="mb-0 text-white-50">Manage room sanitation and maintenance tasks (<%= DateTime.Now.ToString("MMM dd, yyyy") %>)</p>
                     </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card stats-card completed-today shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="text-muted small text-uppercase fw-bold">Completed Today</h6>
-                                <h2 class="mb-0 fw-bold" style="color: #28a745;" id="completedCount">0</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card stats-card urgent shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="text-muted small text-uppercase fw-bold">Urgent (>2hrs)</h6>
-                                <h2 class="mb-0 fw-bold" style="color: #dc3545;" id="urgentCount">0</h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-3">
-                        <div class="card stats-card shadow-sm h-100">
-                            <div class="card-body">
-                                <h6 class="text-muted small text-uppercase fw-bold">Avg. Clean Time</h6>
-                                <h2 class="mb-0 fw-bold" style="color: #0b6623;" id="avgTime">0m</h2>
-                            </div>
-                        </div>
+                    <div class="col-auto">
+                        <a href="<%= ResolveUrl("~/HouseKeeper/HouseKeeperDashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
+                            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Cleaning Schedule Table -->
+        <%-- Statistics Cards - 2 per row on mobile --%>
+        <div class="row g-3 mb-4">
+            <div class="col-6 col-md-3">
+                <div class="card stats-card pending-cleaning shadow-sm h-100">
+                    <div class="card-body">
+                        <h6 class="text-muted small text-uppercase fw-bold">Pending Cleaning</h6>
+                        <h2 class="mb-0 fw-bold" style="color: #f1c40f;" id="pendingCount">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stats-card completed-today shadow-sm h-100">
+                    <div class="card-body">
+                        <h6 class="text-muted small text-uppercase fw-bold">Completed Today</h6>
+                        <h2 class="mb-0 fw-bold" style="color: #28a745;" id="completedCount">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stats-card urgent shadow-sm h-100">
+                    <div class="card-body">
+                        <h6 class="text-muted small text-uppercase fw-bold">Urgent (&gt;2hrs)</h6>
+                        <h2 class="mb-0 fw-bold" style="color: #dc3545;" id="urgentCount">0</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card stats-card shadow-sm h-100">
+                    <div class="card-body">
+                        <h6 class="text-muted small text-uppercase fw-bold">Avg. Clean Time</h6>
+                        <h2 class="mb-0 fw-bold" style="color: #0b6623;" id="avgTime">0m</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%-- Cleaning Schedule Table --%>
         <div class="card modern-table mb-4">
             <div class="card-header">
                 <div class="d-flex justify-content-between align-items-center">
@@ -265,7 +247,7 @@
                 </div>
             </div>
             <div class="card-body p-0">
-                <div class="table-responsive">
+                <div class="table-scroll">
                     <asp:GridView ID="gvCleaningSchedule" runat="server" AutoGenerateColumns="False" 
                         CssClass="table mb-0" GridLines="None" 
                         EmptyDataText="No rooms currently pending cleaning."
@@ -285,7 +267,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Action">
                                 <ItemTemplate>
-                                    <button type="button" class="btn btn-modern btn-modern-success fw-bold" style="min-width: 120px;" 
+                                    <button type="button" class="btn btn-modern btn-modern-success fw-bold" style="min-width: 110px;" 
                                             data-id='<%# Eval("UnitID") %>' 
                                             data-room='<%# Eval("RoomName") + " - " + Eval("RoomNumber") %>'
                                             onclick="markCleaningDone(this)">
