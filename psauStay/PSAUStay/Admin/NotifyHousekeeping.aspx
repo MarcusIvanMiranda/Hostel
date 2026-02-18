@@ -100,37 +100,27 @@
             background: #e9ecef;
             transform: translateX(5px);
         }
-        /* Custom 4-column layout */
-        .col-md-3 {
-            flex: 0 0 auto;
-            width: 25%;
-            max-width: 25%;
-            padding: 0 12px;
-        }
         @media (max-width: 768px) {
-            .col-md-3 {
-                width: 50%;
-                max-width: 50%;
+            .page-header {
+                margin: -1rem -1rem 1.5rem -1rem;
+                padding: 1.5rem 0;
             }
-        }
-        @media (max-width: 576px) {
-            .col-md-3 {
-                width: 100%;
-                max-width: 100%;
+            .stats-card {
+                padding: 1rem;
             }
         }
     </style>
 
     <div class="page-header">
         <div class="container-fluid">
-            <div class="row align-items-center">
+            <div class="row align-items-center g-3">
                 <div class="col-md-8">
                     <h2 class="mb-2">
                         <i class="bi bi-bell-fill me-3"></i>Notify Housekeeping
                     </h2>
                     <p class="mb-0 opacity-75">Send notifications to housekeeping staff for room maintenance and cleaning tasks</p>
                 </div>
-                <div class="col-md-4 text-md-end">
+                <div class="col-md-4 col-12 text-md-end">
                     <div class="stats-card">
                         <h4 class="mb-1" id="todayCount">0</h4>
                         <small>Today's Notifications</small>
@@ -141,50 +131,46 @@
     </div>
 
     <!-- Quick Stats Section -->
-    <div class="row mb-4">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-3 mb-3">
-                    <div class="card modern-card completed text-center">
-                        <div class="card-body">
-                            <i class="bi bi-check-circle text-success fs-2 mb-2"></i>
-                            <h5 class="card-title">Completed</h5>
-                            <h3 class="text-success" id="completedCount">0</h3>
-                        </div>
-                    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+            <div class="card modern-card completed text-center">
+                <div class="card-body">
+                    <i class="bi bi-check-circle text-success fs-2 mb-2"></i>
+                    <h5 class="card-title">Completed</h5>
+                    <h3 class="text-success" id="completedCount">0</h3>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card modern-card pending text-center">
-                        <div class="card-body">
-                            <i class="bi bi-hourglass-split text-warning fs-2 mb-2"></i>
-                            <h5 class="card-title">Pending</h5>
-                            <h3 class="text-warning" id="pendingCount">0</h3>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card modern-card pending text-center">
+                <div class="card-body">
+                    <i class="bi bi-hourglass-split text-warning fs-2 mb-2"></i>
+                    <h5 class="card-title">Pending</h5>
+                    <h3 class="text-warning" id="pendingCount">0</h3>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card modern-card deep-cleaning text-center">
-                        <div class="card-body">
-                            <i class="bi bi-search text-info fs-2 mb-2"></i>
-                            <h5 class="card-title">Deep Cleaning</h5>
-                            <h3 class="text-info" id="deepCleaningCount">0</h3>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card modern-card deep-cleaning text-center">
+                <div class="card-body">
+                    <i class="bi bi-search text-info fs-2 mb-2"></i>
+                    <h5 class="card-title">Deep Cleaning</h5>
+                    <h3 class="text-info" id="deepCleaningCount">0</h3>
                 </div>
-                <div class="col-md-3 mb-3">
-                    <div class="card modern-card regular-cleaning text-center">
-                        <div class="card-body">
-                            <i class="bi bi-brush text-primary fs-2 mb-2"></i>
-                            <h5 class="card-title">Regular Cleaning</h5>
-                            <h3 class="text-primary" id="regularCleaningCount">0</h3>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card modern-card regular-cleaning text-center">
+                <div class="card-body">
+                    <i class="bi bi-brush text-primary fs-2 mb-2"></i>
+                    <h5 class="card-title">Regular Cleaning</h5>
+                    <h3 class="text-primary" id="regularCleaningCount">0</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row g-3">
         <!-- Notification Form -->
         <div class="col-lg-5 mb-4">
             <div class="card modern-card h-100">

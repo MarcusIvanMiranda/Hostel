@@ -116,12 +116,14 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         .rooms-table {
             margin-bottom: 0;
             border: none;
+            min-width: 650px;
         }
 
         .rooms-table .table-header {
@@ -244,6 +246,10 @@
 
             .price-text {
                 font-size: 1rem;
+            }
+
+            .page-header {
+                padding: 18px 20px;
             }
         }
     </style>

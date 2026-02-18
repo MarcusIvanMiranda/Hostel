@@ -20,14 +20,16 @@
         </div>
     </div>
 
-    <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered">
-        <Columns>
-            <asp:BoundField DataField="RoomName" HeaderText="Room Name" />
-            <asp:BoundField DataField="RoomNumber" HeaderText="Room No." />
-            <asp:BoundField DataField="Capacity" HeaderText="Capacity" />
-            <asp:BoundField DataField="Status" HeaderText="Room Status" />
-            <asp:BoundField DataField="CurrentBooking" HeaderText="Current Booking" />
-            <asp:BoundField DataField="MaintenanceStatus" HeaderText="Maintenance Status" />
-        </Columns>
-    </asp:GridView>
+    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+        <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="False" CssClass="table table-striped table-bordered" style="min-width: 550px;">
+            <Columns>
+                <asp:BoundField DataField="RoomName" HeaderText="Room Name" />
+                <asp:BoundField DataField="RoomNumber" HeaderText="Room No." />
+                <asp:BoundField DataField="Capacity" HeaderText="Capacity" />
+                <asp:BoundField DataField="Status" HeaderText="Room Status" />
+                <asp:BoundField DataField="CurrentBooking" HeaderText="Current Booking" />
+                <asp:BoundField DataField="MaintenanceStatus" HeaderText="Maintenance Status" />
+            </Columns>
+        </asp:GridView>
+    </div>
 </asp:Content>

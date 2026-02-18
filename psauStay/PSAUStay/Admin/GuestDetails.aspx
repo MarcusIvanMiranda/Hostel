@@ -32,33 +32,36 @@
         
         <asp:Label ID="lblSuccessMessage" runat="server" CssClass="alert alert-success d-block mb-3" Visible="false"></asp:Label>
 
-        <asp:GridView ID="gvGuestList" runat="server" CssClass="table table-bordered table-striped"
-            AutoGenerateColumns="False" AllowPaging="True" PageSize="15"
-            OnPageIndexChanging="gvGuestList_PageIndexChanging" 
-            OnRowCommand="gvGuestList_RowCommand"
-            DataKeyNames="BookingID"
-            EmptyDataText="No approved bookings found.">
-            <Columns>
-                <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
-                <asp:BoundField DataField="Email" HeaderText="Email" />
-                <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
-                <asp:BoundField DataField="BookingCount" HeaderText="Bookings" ItemStyle-CssClass="text-center" />
-                <asp:BoundField DataField="RoomName" HeaderText="Rooms" />
-                <asp:BoundField DataField="FirstCheckIn" HeaderText="First Check-In" DataFormatString="{0:MMM dd, yyyy}" />
-                <asp:BoundField DataField="LastCheckOut" HeaderText="Last Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
-                <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" DataFormatString="₱{0:N2}" ItemStyle-CssClass="text-success fw-bold" />
-                <asp:TemplateField HeaderText="Actions">
-                    <ItemStyle CssClass="text-center" />
-                    <ItemTemplate>
-                        <button type="button" class="btn btn-sm btn-warning me-1 review-btn" 
-                                data-email='<%# Eval("Email") %>' data-fullname='<%# Eval("FullName") %>' data-contact='<%# Eval("Contact") %>'>
-                            <i class="bi bi-eye"></i> Review
-                        </button>
-                    </ItemTemplate>
-                </asp:TemplateField>
-            </Columns>
-            <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
-        </asp:GridView>
+        <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+            <asp:GridView ID="gvGuestList" runat="server" CssClass="table table-bordered table-striped"
+                AutoGenerateColumns="False" AllowPaging="True" PageSize="15"
+                OnPageIndexChanging="gvGuestList_PageIndexChanging" 
+                OnRowCommand="gvGuestList_RowCommand"
+                DataKeyNames="BookingID"
+                EmptyDataText="No approved bookings found."
+                style="min-width: 650px;">
+                <Columns>
+                    <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
+                    <asp:BoundField DataField="Contact" HeaderText="Contact Number" />
+                    <asp:BoundField DataField="BookingCount" HeaderText="Bookings" ItemStyle-CssClass="text-center" />
+                    <asp:BoundField DataField="RoomName" HeaderText="Rooms" />
+                    <asp:BoundField DataField="FirstCheckIn" HeaderText="First Check-In" DataFormatString="{0:MMM dd, yyyy}" />
+                    <asp:BoundField DataField="LastCheckOut" HeaderText="Last Check-Out" DataFormatString="{0:MMM dd, yyyy}" />
+                    <asp:BoundField DataField="TotalPrice" HeaderText="Total Price" DataFormatString="₱{0:N2}" ItemStyle-CssClass="text-success fw-bold" />
+                    <asp:TemplateField HeaderText="Actions">
+                        <ItemStyle CssClass="text-center" />
+                        <ItemTemplate>
+                            <button type="button" class="btn btn-sm btn-warning me-1 review-btn" 
+                                    data-email='<%# Eval("Email") %>' data-fullname='<%# Eval("FullName") %>' data-contact='<%# Eval("Contact") %>'>
+                                <i class="bi bi-eye"></i> Review
+                            </button>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                </Columns>
+                <PagerStyle CssClass="pagination" HorizontalAlign="Center" />
+            </asp:GridView>
+        </div>
     </div>
 
     <!-- Guest Details Modal -->
@@ -155,7 +158,7 @@
                                     
                                     <!-- Review Categories -->
                                     <div class="row g-3 mb-3">
-                                        <div class="col-md-3">
+                                        <div class="col-6 col-md-3">
                                             <div class="text-center">
                                                 <div class="text-warning mb-1">
                                                     <i class="bi bi-star-fill"></i>
@@ -167,7 +170,7 @@
                                                 <small class="text-muted d-block">Cleanliness</small>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-6 col-md-3">
                                             <div class="text-center">
                                                 <div class="text-warning mb-1">
                                                     <i class="bi bi-star-fill"></i>
@@ -179,7 +182,7 @@
                                                 <small class="text-muted d-block">Service</small>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-6 col-md-3">
                                             <div class="text-center">
                                                 <div class="text-warning mb-1">
                                                     <i class="bi bi-star-fill"></i>
@@ -191,7 +194,7 @@
                                                 <small class="text-muted d-block">Facilities</small>
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-6 col-md-3">
                                             <div class="text-center">
                                                 <div class="text-warning mb-1">
                                                     <i class="bi bi-star-fill"></i>
@@ -231,11 +234,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer bg-light border-0">
-                    <button type="button" class="btn btn-lg px-4 me-2" style="background-color: var(--psau-green); color: white; border: none;" data-bs-dismiss="modal">
+                <div class="modal-footer bg-light border-0 flex-wrap gap-2">
+                    <button type="button" class="btn btn-lg px-4" style="background-color: var(--psau-green); color: white; border: none;" data-bs-dismiss="modal">
                         <i class="bi bi-check-circle-fill me-2"></i>Close
                     </button>
-                    <button type="button" class="btn btn-lg px-4 me-2" style="background-color: #dc3545; color: white; border: none;" onclick="rejectReview()">
+                    <button type="button" class="btn btn-lg px-4" style="background-color: #dc3545; color: white; border: none;" onclick="rejectReview()">
                         <i class="bi bi-x-circle-fill me-2"></i>Reject Review
                     </button>
                     <button type="button" class="btn btn-lg px-4" style="background-color: var(--psau-gold); color: var(--psau-green); border: none;" onclick="approveReview()">
@@ -370,4 +373,3 @@
         });
     </script>
 </asp:Content>
-

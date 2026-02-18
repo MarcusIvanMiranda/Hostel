@@ -36,7 +36,7 @@
         </ol>
     </nav>
 
-    <div class="row mb-4">
+    <div class="row mb-4 g-3">
         <div class="col-lg-8">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-gradient" style="background: linear-gradient(135deg, var(--psau-green) 0%, var(--psau-green-dark) 100%);">
@@ -47,9 +47,10 @@
                     </div>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
                         <asp:GridView ID="gvMaintenance" runat="server" AutoGenerateColumns="False" 
-                            CssClass="table table-hover align-middle mb-0" GridLines="None" UseAccessibleHeader="true">
+                            CssClass="table table-hover align-middle mb-0" GridLines="None" UseAccessibleHeader="true"
+                            style="min-width: 550px;">
                             <Columns>
                                 <asp:BoundField DataField="MaintenanceID" HeaderText="ID" ItemStyle-CssClass="fw-bold" />
                                 <asp:BoundField DataField="RoomName" HeaderText="Room" />
@@ -166,7 +167,7 @@
         /* Additional styling fixes */
         .table-responsive {
             border-radius: 0 0 12px 12px;
-            overflow: hidden;
+            overflow-x: auto;
         }
         
         .card-header {

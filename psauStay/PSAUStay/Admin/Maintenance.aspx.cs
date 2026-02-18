@@ -78,7 +78,7 @@ namespace PSAUStay.Admin
                 InProgressCount = (int)inProgressCmd.ExecuteScalar();
 
                 // Get completed requests count
-                string completedTodayQuery = "SELECT COUNT(*) FROM MaintenanrooceRequests WHERE Status = 'Completed'";
+                string completedTodayQuery = "SELECT COUNT(*) FROM MaintenanceRequests WHERE Status = 'Completed'";
                 SqlCommand completedTodayCmd = new SqlCommand(completedTodayQuery, con);
                 CompletedTodayCount = (int)completedTodayCmd.ExecuteScalar();
                 con.Close();

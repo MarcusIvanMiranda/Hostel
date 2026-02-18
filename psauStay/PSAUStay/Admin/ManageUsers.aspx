@@ -1,16 +1,14 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ManageUsers.aspx.cs" Inherits="PSAUStay.Admin.WebForm1" %>
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Manage Users | PSAU Stay</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
     <style>
         body {
             background-color: #f5f5f5;
         }
-
         .sidebar {
             height: 100vh;
             position: fixed;
@@ -20,8 +18,9 @@
             background-color: #343a40;
             color: #fff;
             padding-top: 60px;
+            z-index: 1000;
+            transition: transform 0.3s ease;
         }
-
         .sidebar a {
             display: block;
             color: #fff;
@@ -30,25 +29,40 @@
             margin-bottom: 5px;
             border-radius: 5px;
         }
-
         .sidebar a:hover {
             background-color: #495057;
         }
-
         .content {
             margin-left: 240px;
             padding: 20px;
         }
-
         .card {
             margin-bottom: 20px;
             border-radius: 10px;
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
-
         .badge-pending { background-color: #ffc107; color: #fff; }
         .badge-approved { background-color: #28a745; color: #fff; }
         .badge-rejected { background-color: #dc3545; color: #fff; }
+
+        /* Responsive sidebar */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding-top: 15px;
+            }
+            .sidebar a {
+                display: inline-block;
+                padding: 8px 12px;
+                font-size: 0.85rem;
+            }
+            .content {
+                margin-left: 0;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -66,11 +80,8 @@
         
         <%--<!-- Main Content -->
         <div class="content">
-
             
-
         </div>--%>
     </form>
 </body>
 </html>
-

@@ -21,7 +21,7 @@
     </div>
 
     <div class="card p-4 shadow-sm">
-        <div class="row">
+        <div class="row g-3">
             <div class="col-md-6">
                 <label class="form-label fw-bold">Select Room Type</label>
                 <asp:DropDownList ID="ddlRoomTypes" runat="server" AutoPostBack="true" CssClass="form-control"
@@ -43,27 +43,29 @@
 
     <asp:Label ID="lblMsg" runat="server" CssClass="d-block mb-2"></asp:Label>
 
-    <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped shadow-sm"
-        OnRowCommand="gvRooms_RowCommand">
-        <Columns>
-            <asp:BoundField DataField="RoomNumber" HeaderText="Room Number" />
-            <asp:TemplateField HeaderText="Status">
-                <ItemTemplate>
-                    <span class='badge <%# Eval("Status").ToString() == "Available" ? "bg-success" : "bg-danger" %>'>
-                        <%# Eval("Status") %>
-                    </span>
-                </ItemTemplate>
-            </asp:TemplateField>
+    <div class="table-responsive" style="-webkit-overflow-scrolling: touch;">
+        <asp:GridView ID="gvRooms" runat="server" AutoGenerateColumns="false" CssClass="table table-bordered table-striped shadow-sm"
+            OnRowCommand="gvRooms_RowCommand" style="min-width: 400px;">
+            <Columns>
+                <asp:BoundField DataField="RoomNumber" HeaderText="Room Number" />
+                <asp:TemplateField HeaderText="Status">
+                    <ItemTemplate>
+                        <span class='badge <%# Eval("Status").ToString() == "Available" ? "bg-success" : "bg-danger" %>'>
+                            <%# Eval("Status") %>
+                        </span>
+                    </ItemTemplate>
+                </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Actions">
-                <ItemTemplate>
-                    <asp:Button ID="btnDelete" runat="server" Text="Remove" CommandName="DeleteRoom"
-                        CommandArgument='<%# Eval("UnitID") %>' CssClass="btn btn-outline-danger btn-sm" 
-                        OnClientClick="return confirm('Are you sure you want to remove this specific unit?');" />
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+                <asp:TemplateField HeaderText="Actions">
+                    <ItemTemplate>
+                        <asp:Button ID="btnDelete" runat="server" Text="Remove" CommandName="DeleteRoom"
+                            CommandArgument='<%# Eval("UnitID") %>' CssClass="btn btn-outline-danger btn-sm" 
+                            OnClientClick="return confirm('Are you sure you want to remove this specific unit?');" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+    </div>
 
     <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

@@ -270,25 +270,5 @@ namespace PSAUStay.Admin
         protected void gvRejectedStays_DataBinding(object sender, EventArgs e) => gvRejectedStays.DataSource = GetRejectedStaysData();
 
         protected void gvRecentCheckouts_DataBinding(object sender, EventArgs e) => gvRecentCheckouts.DataSource = GetRecentCheckoutsData();
-
-        protected void gvApprovedStays_RowCommand(object sender, DevExpress.Web.ASPxGridViewRowCommandEventArgs e)
-        {
-            if (e.CommandArgs.CommandName == "Delete")
-            {
-                string combinedID = gvApprovedStays.GetRowValues(e.VisibleIndex, "CombinedID").ToString();
-                string source = combinedID.StartsWith("Online") ? "Online" : "Manual";
-                string id = combinedID.Substring(source.Length);
-
-                using (SqlConnection con = new SqlConnection(connStr))
-                {
-                    con.Open();
-                    string query = (source == "Online") ? "DELETE FROM RoomRequests WHERE RequestID = @id" : "DELETE FROM [dbo].[Reservation] WHERE ReservationID = @id";
-                    SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@id", id);
-                    cmd.ExecuteNonQuery();
-                }
-                FullRefresh();
-            }
-        }
     }
 }
