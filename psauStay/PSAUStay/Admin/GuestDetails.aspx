@@ -38,7 +38,7 @@
                 OnPageIndexChanging="gvGuestList_PageIndexChanging" 
                 OnRowCommand="gvGuestList_RowCommand"
                 DataKeyNames="BookingID"
-                EmptyDataText="No approved bookings found."
+                EmptyDataText="No approved or checked-out bookings found."
                 style="min-width: 650px;">
                 <Columns>
                     <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
@@ -75,174 +75,19 @@
                         </div>
                         <div>
                             <h5 class="modal-title mb-0 fw-bold">Guest Review Management</h5>
-                            <small class="opacity-75">Manage guest feedback and reviews</small>
+                            <small class="opacity-75" id="modalGuestInfo">Loading guest information...</small>
                         </div>
                     </div>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-4" style="background-color: #f8f9fa;">
-                    <div class="row g-4">
-                        <!-- Guest Information -->
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="rounded-circle bg-info bg-opacity-10 p-3 me-3">
-                                            <i class="bi bi-person-fill text-info" style="font-size: 1.2rem;"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="text-muted mb-1 fw-semibold">Guest Information</h6>
-                                            <p class="mb-0 text-muted small">Guest details and booking summary</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row align-items-center">
-                                        <div class="col-md-4">
-                                            <label class="text-muted small fw-semibold d-block">Guest Name</label>
-                                            <p class="fw-bold mb-0 fs-5" id="modalFullName" style="color: var(--psau-green);">-</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="text-muted small fw-semibold d-block">Email</label>
-                                            <p class="fw-bold mb-0 fs-5" id="modalEmail" style="color: var(--psau-green);">-</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label class="text-muted small fw-semibold d-block">Contact Number</label>
-                                            <p class="fw-bold mb-0 fs-5" id="modalContact" style="color: var(--psau-green);">-</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Review Section -->
-                        <div class="col-12">
-                            <div class="card border-0 shadow-sm">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center mb-3">
-                                        <div class="rounded-circle bg-warning bg-opacity-10 p-3 me-3">
-                                            <i class="bi bi-star-fill text-warning" style="font-size: 1.2rem;"></i>
-                                        </div>
-                                        <div>
-                                            <h6 class="text-muted mb-1 fw-semibold">Guest Review & Feedback</h6>
-                                            <p class="mb-0 text-muted small">Customer experience and rating information</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Rating Stars -->
-                                    <div class="mb-3">
-                                        <div class="d-flex align-items-center mb-2">
-                                            <span class="me-2 fw-semibold">Rating:</span>
-                                            <div class="text-warning">
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-fill"></i>
-                                                <i class="bi bi-star-half"></i>
-                                                <span class="ms-2 text-muted">4.5/5.0</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Review Content -->
-                                    <div class="mb-3">
-                                        <label class="text-muted small fw-semibold">Guest Comments</label>
-                                        <div class="border rounded p-3 bg-white" style="min-height: 120px;">
-                                            <p class="mb-0 text-muted fst-italic">
-                                                "Excellent stay! The room was clean and comfortable. Staff was very helpful and accommodating. 
-                                                The location is perfect and the amenities exceeded our expectations. Would definitely recommend 
-                                                to others and will be booking again for our next visit. The PSAU Stay facility provided 
-                                                everything we needed for a comfortable and enjoyable experience."
-                                            </p>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Review Categories -->
-                                    <div class="row g-3 mb-3">
-                                        <div class="col-6 col-md-3">
-                                            <div class="text-center">
-                                                <div class="text-warning mb-1">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <small class="text-muted d-block">Cleanliness</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3">
-                                            <div class="text-center">
-                                                <div class="text-warning mb-1">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star"></i>
-                                                </div>
-                                                <small class="text-muted d-block">Service</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3">
-                                            <div class="text-center">
-                                                <div class="text-warning mb-1">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-half"></i>
-                                                </div>
-                                                <small class="text-muted d-block">Facilities</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-6 col-md-3">
-                                            <div class="text-center">
-                                                <div class="text-warning mb-1">
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                    <i class="bi bi-star-fill"></i>
-                                                </div>
-                                                <small class="text-muted d-block">Location</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- Review Metadata -->
-                                    <div class="row g-2">
-                                        <div class="col-md-4">
-                                            <small class="text-muted d-block">
-                                                <i class="bi bi-calendar-check me-1"></i>
-                                                Review Date: <span class="fw-semibold">Dec 15, 2025</span>
-                                            </small>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <small class="text-muted d-block">
-                                                <i class="bi bi-person-check me-1"></i>
-                                                Verified Stay: <span class="fw-semibold text-success">Yes</span>
-                                            </small>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <small class="text-muted d-block">
-                                                <i class="bi bi-shield-check me-1"></i>
-                                                Status: <span class="fw-semibold text-success">Published</span>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="modal-body p-4" style="background-color: white;">
+                    <div id="reviewSection">
+                        <!-- Content will be loaded here dynamically -->
                     </div>
                 </div>
-                <div class="modal-footer bg-light border-0 flex-wrap gap-2">
+                <div class="modal-footer bg-light border-0">
                     <button type="button" class="btn btn-lg px-4" style="background-color: var(--psau-green); color: white; border: none;" data-bs-dismiss="modal">
                         <i class="bi bi-check-circle-fill me-2"></i>Close
-                    </button>
-                    <button type="button" class="btn btn-lg px-4" style="background-color: #dc3545; color: white; border: none;" onclick="rejectReview()">
-                        <i class="bi bi-x-circle-fill me-2"></i>Reject Review
-                    </button>
-                    <button type="button" class="btn btn-lg px-4" style="background-color: var(--psau-gold); color: var(--psau-green); border: none;" onclick="approveReview()">
-                        <i class="bi bi-check2-square me-2"></i>Approve Review
                     </button>
                 </div>
             </div>
@@ -275,6 +120,13 @@
                 $('#modalEmail').text(email || 'N/A');
                 $('#modalFullName').text(fullName || 'N/A');
                 $('#modalContact').text(contact || 'N/A');
+                
+                // Update modal header with guest info
+                $('#modalGuestInfo').text(`${fullName || 'Guest'} (${email || 'N/A'})`);
+                
+                // Load guest reviews
+                loadGuestReviews(email);
+                
                 $('#guestDetailsModal').modal('show');
             };
 
@@ -293,82 +145,274 @@
                 $('#guestDetailsModal').modal('show');
             };
 
-            // Approve review function
-            window.approveReview = function() {
-                Swal.fire({
-                    title: '<i class="bi bi-check-circle-fill me-2" style="color: #0b6623;"></i>Approve Review',
-                    html: `
-                        <div style="text-align: left; background-color: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #0b6623;">
-                            <p class="mb-3">Are you sure you want to approve this guest review?</p>
-                            <div class="mb-2">
-                                <strong style="color: #0b6623;"><i class="bi bi-info-circle me-2"></i>Action:</strong> 
-                                <span class="text-success">Publish review publicly</span>
-                            </div>
-                            <div>
-                                <strong style="color: #0b6623;"><i class="bi bi-shield-check me-2"></i>Verification:</strong> 
-                                <span class="fw-bold">Guest stay confirmed</span>
-                            </div>
-                        </div>
-                    `,
-                    icon: undefined,
-                    showCancelButton: true,
-                    confirmButtonText: '<i class="bi bi-check2-square me-2"></i>Yes, Approve',
-                    cancelButtonText: '<i class="bi bi-x-circle me-2"></i>Cancel',
-                    confirmButtonColor: '#0b6623',
-                    cancelButtonColor: '#6c757d',
-                    background: '#ffffff',
-                    customClass: {
-                        popup: 'shadow-lg'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // Trigger the hidden button to post back to server
-                        $('#<%= btnHiddenConfirm.ClientID %>').click();
+            // Debug function to check all reviews in database
+            window.debugAllReviews = function() {
+                console.log("Debug: Checking all reviews in database...");
+                $.ajax({
+                    type: "POST",
+                    url: "GuestDetails.aspx/GetAllReviewsForDebugging",
+                    data: "{}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        var reviews = JSON.parse(response.d);
+                        console.log("All reviews in database:", reviews);
+                        console.log("Total reviews count:", reviews.length);
+                        
+                        if (reviews.length === 0) {
+                            console.warn("No reviews found in database at all!");
+                        } else {
+                            console.log("Sample review:", reviews[0]);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error debugging all reviews:", error);
+                        console.error("XHR status:", xhr.status);
+                        console.error("XHR responseText:", xhr.responseText);
                     }
                 });
             };
 
-            // Reject review function
-            window.rejectReview = function () {
-                Swal.fire({
-                    title: '<i class="bi bi-x-circle-fill me-2" style="color: #dc3545;"></i>Reject Review',
-                    html: `
-                        <div style="text-align: left; background-color: #f8f9fa; padding: 20px; border-radius: 8px; border-left: 4px solid #dc3545;">
-                            <p class="mb-3">Are you sure you want to reject this guest review?</p>
-                            <div class="mb-2">
-                                <strong style="color: #dc3545;"><i class="bi bi-info-circle me-2"></i>Action:</strong> 
-                                <span class="text-danger">Remove review from public view</span>
-                            </div>
-                            <div>
-                                <strong style="color: #dc3545;"><i class="bi bi-exclamation-triangle me-2"></i>Reason:</strong> 
-                                <span class="fw-bold">Review does not meet guidelines</span>
-                            </div>
-                        </div>
-                    `,
-                    icon: undefined,
-                    showCancelButton: true,
-                    confirmButtonText: '<i class="bi bi-x-square me-2"></i>Yes, Reject',
-                    cancelButtonText: '<i class="bi bi-check-circle me-2"></i>Cancel',
-                    confirmButtonColor: '#dc3545',
-                    cancelButtonColor: '#6c757d',
-                    background: '#ffffff',
-                    customClass: {
-                        popup: 'shadow-lg'
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: '<i class="bi bi-check-circle-fill me-2" style="color: #28a745;"></i>Review Rejected',
-                            text: 'The guest review has been successfully rejected and removed from public view.',
-                            icon: undefined,
-                            confirmButtonColor: '#28a745',
-                            background: '#ffffff',
-                            customClass: {
-                                popup: 'shadow-lg'
-                            }
-                        });
+            // Load guest reviews from server
+            window.loadGuestReviews = function(email) {
+                console.log("loadGuestReviews called with email:", email);
+                
+                if (!email) {
+                    console.log("No email provided, showing no reviews");
+                    showNoReviews();
+                    return;
+                }
+
+                // First, debug all reviews to see what emails exist
+                debugAllReviews();
+                
+                $.ajax({
+                    type: "POST",
+                    url: "GuestDetails.aspx/GetGuestReviews",
+                    data: JSON.stringify({ guestEmail: email }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        console.log("AJAX success, response:", response);
+                        var reviews = JSON.parse(response.d);
+                        console.log("Parsed reviews:", reviews);
+                        if (reviews && reviews.length > 0) {
+                            console.log("Found reviews, displaying them");
+                            displayReviews(reviews);
+                        } else {
+                            console.log("No reviews found, showing no reviews message");
+                            showNoReviews();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error loading reviews:", error);
+                        console.error("XHR status:", xhr.status);
+                        console.error("XHR responseText:", xhr.responseText);
+                        showNoReviews();
                     }
                 });
+            };
+
+            // Display reviews in the modal
+            window.displayReviews = function(reviews) {
+                console.log("displayReviews called with:", reviews);
+                console.log("Number of reviews:", reviews ? reviews.length : 0);
+                
+                var reviewSection = $('#reviewSection');
+                reviewSection.empty(); // Clear previous reviews
+
+                if (!reviews || reviews.length === 0) {
+                    console.log("No reviews to display");
+                    reviewSection.html(`
+                        <div class="text-center py-5">
+                            <i class="bi bi-star text-muted" style="font-size: 3rem;"></i>
+                            <p class="text-muted mt-3 mb-0">No reviews found for this guest.</p>
+                            <small class="text-muted">Guest has not submitted any reviews yet.</small>
+                        </div>
+                    `);
+                    return;
+                }
+
+                // Display all reviews from RoomReviews table
+                var reviewsHtml = '<div class="container-fluid">';
+                reviews.forEach(function(review, index) {
+                    console.log("Processing review:", review);
+                    
+                    // Debug: Log individual review data
+                    console.log("Review data:", {
+                        ReviewID: review.ReviewID,
+                        BookingRef: review.BookingRef,
+                        GuestName: review.GuestName,
+                        GuestEmail: review.GuestEmail,
+                        RoomName: review.RoomName,
+                        CheckInDate: review.CheckInDate,
+                        CheckOutDate: review.CheckOutDate,
+                        OverallRating: review.OverallRating,
+                        CleanlinessRating: review.CleanlinessRating,
+                        ComfortRating: review.ComfortRating,
+                        StaffRating: review.StaffRating,
+                        LocationRating: review.LocationRating,
+                        Comments: review.Comments,
+                        ReviewDate: review.ReviewDate,
+                        IsApproved: review.IsApproved
+                    });
+                    
+                    var starsOverall = generateStars(review.OverallRating);
+                    var starsCleanliness = generateStars(review.CleanlinessRating);
+                    var starsComfort = generateStars(review.ComfortRating);
+                    var starsStaff = generateStars(review.StaffRating);
+                    var starsLocation = generateStars(review.LocationRating);
+
+                    var statusBadge = '<span class="badge bg-success">Published</span>';
+                    
+                    reviewsHtml += `
+                        <div class="review-item mb-4 ${index > 0 ? 'border-top pt-4' : ''}" data-review-id="${review.ReviewID}">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <!-- Header with Review Info -->
+                                    <div class="row align-items-center mb-4">
+                                        <div class="col-md-8">
+                                            <h5 class="mb-2 text-primary">
+                                                <i class="bi bi-person-circle me-2"></i>${review.GuestName || 'N/A'}
+                                            </h5>
+                                            <div class="text-muted small">
+                                                <i class="bi bi-envelope me-1"></i>${review.GuestEmail || 'N/A'} | 
+                                                <i class="bi bi-door-closed me-1"></i>${review.RoomName || 'N/A'} | 
+                                                <i class="bi bi-clipboard-check me-1"></i>${review.BookingRef || 'N/A'}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 text-end">
+                                            ${statusBadge}
+                                            <div class="text-muted small mt-2">
+                                                <i class="bi bi-calendar-event me-1"></i>${review.ReviewDate || 'N/A'}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Stay Dates -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-6">
+                                            <div class="p-3 bg-light rounded">
+                                                <i class="bi bi-calendar-check text-success me-2"></i>
+                                                <strong>Check-in:</strong> ${review.CheckInDate || 'N/A'}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="p-3 bg-light rounded">
+                                                <i class="bi bi-calendar-x text-danger me-2"></i>
+                                                <strong>Check-out:</strong> ${review.CheckOutDate || 'N/A'}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Overall Rating -->
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="p-4 bg-primary bg-opacity-10 rounded text-center">
+                                                <div class="text-warning mb-2" style="font-size: 2rem;">
+                                                    ${starsOverall}
+                                                </div>
+                                                <h4 class="mb-0">${review.OverallRating || 0}/5.0</h4>
+                                                <small class="text-muted">Overall Rating</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Category Ratings -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-3 col-6 mb-3">
+                                            <div class="text-center p-3 border rounded h-100">
+                                                <div class="text-warning mb-2" style="font-size: 1.2rem;">${starsCleanliness}</div>
+                                                <small class="text-muted d-block">Cleanliness</small>
+                                                <strong class="text-primary">${review.CleanlinessRating || 0}/5</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 mb-3">
+                                            <div class="text-center p-3 border rounded h-100">
+                                                <div class="text-warning mb-2" style="font-size: 1.2rem;">${starsComfort}</div>
+                                                <small class="text-muted d-block">Comfort</small>
+                                                <strong class="text-primary">${review.ComfortRating || 0}/5</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 mb-3">
+                                            <div class="text-center p-3 border rounded h-100">
+                                                <div class="text-warning mb-2" style="font-size: 1.2rem;">${starsStaff}</div>
+                                                <small class="text-muted d-block">Service</small>
+                                                <strong class="text-primary">${review.StaffRating || 0}/5</strong>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-6 mb-3">
+                                            <div class="text-center p-3 border rounded h-100">
+                                                <div class="text-warning mb-2" style="font-size: 1.2rem;">${starsLocation}</div>
+                                                <small class="text-muted d-block">Location</small>
+                                                <strong class="text-primary">${review.LocationRating || 0}/5</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Comments -->
+                                    ${review.Comments && review.Comments.trim() !== '' ? `
+                                        <div class="row mb-4">
+                                            <div class="col-12">
+                                                <div class="p-4 bg-light rounded">
+                                                    <h6 class="mb-3">
+                                                        <i class="bi bi-chat-quote text-info me-2"></i>Guest Comments
+                                                    </h6>
+                                                    <p class="mb-0 fst-italic fs-5">"${review.Comments}"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ` : ''}
+
+                                    <!-- Would Recommend -->
+                                    <div class="row mb-4">
+                                        <div class="col-12">
+                                            <div class="p-3 ${review.WouldRecommend ? 'bg-success bg-opacity-10' : 'bg-danger bg-opacity-10'} rounded">
+                                                <i class="bi bi-hand-thumbs-up ${review.WouldRecommend ? 'text-success' : 'text-danger'} me-2"></i>
+                                                <strong>Would Recommend:</strong> 
+                                                <span class="${review.WouldRecommend ? 'text-success fw-bold' : 'text-danger fw-bold'}">
+                                                    ${review.WouldRecommend ? 'YES' : 'NO'}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                                                    </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                reviewsHtml += '</div>';
+                reviewSection.html(reviewsHtml);
+                console.log("Reviews HTML set successfully");
+            };
+
+            // Show no reviews message
+            window.showNoReviews = function() {
+                var reviewSection = $('#reviewSection');
+                
+                reviewSection.html(`
+                    <div class="text-center py-4">
+                        <i class="bi bi-star text-muted" style="font-size: 3rem;"></i>
+                        <p class="text-muted mt-3 mb-0">No reviews found for this guest.</p>
+                        <small class="text-muted">Guest has not submitted any reviews yet.</small>
+                    </div>
+                `);
+            };
+
+            // Generate star rating HTML
+            window.generateStars = function(rating) {
+                console.log("generateStars called with rating:", rating);
+                var stars = '';
+                for (var i = 1; i <= 5; i++) {
+                    if (i <= rating) {
+                        stars += '<i class="bi bi-star-fill text-warning"></i>';
+                    } else {
+                        stars += '<i class="bi bi-star text-warning"></i>';
+                    }
+                }
+                console.log("Generated stars:", stars);
+                return stars;
             };
         });
     </script>

@@ -128,6 +128,41 @@
                     </div>
                 </div>
             </div>
+
+            <%-- Payment Upload Section --%>
+            <div class="row">
+                <div class="col-12">
+                    <asp:Panel ID="pnlPaymentUpload" runat="server" Visible="false">
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-white py-3 border-bottom">
+                                <h5 class="mb-0 fw-bold">
+                                    <i class="bi bi-image me-2"></i>Payment Upload
+                                </h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="text-muted small text-uppercase fw-bold">Uploaded File</label>
+                                        <div class="mt-2">
+                                            <asp:HyperLink ID="lnkDownloadFile" runat="server" Target="_blank">
+                                                <asp:Image ID="imgPaymentProof" runat="server" CssClass="img-fluid rounded border clickable-image" Style="max-height: 500px; cursor: pointer;" />
+                                            </asp:HyperLink>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="text-muted small text-uppercase fw-bold">File Details</label>
+                                        <div class="mt-2">
+                                            <p class="mb-2"><strong>File Name:</strong> <asp:Label ID="lblFileName" runat="server" /></p>
+                                            <p class="mb-2"><strong>Uploaded:</strong> <asp:Label ID="lblUploadedDate" runat="server" /></p>
+                                            <p class="mb-2"><strong>Status:</strong> <asp:Label ID="lblPaymentStatus" runat="server" /></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                </div>
+            </div>
         </asp:Panel>
     </div>
 

@@ -18,9 +18,30 @@
         .stat-card h6 { letter-spacing: 0.5px; }
         .stat-card h2 { font-size: 2.5rem; font-weight: 700; }
 
-        /* Responsive table wrapper */
-        .grid-responsive-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .grid-responsive-wrapper table { min-width: 600px; }
+        /* Responsive table wrapper - removed horizontal scrolling */
+        .grid-responsive-wrapper { width: 100%; }
+        .grid-responsive-wrapper table { width: 100% !important; table-layout: fixed; }
+        
+        /* Adjust column widths for better fit */
+        .grid-responsive-wrapper .dxgv td { 
+            white-space: normal; /* Allow text to wrap */
+            overflow: visible; /* Ensure full text is visible */
+            text-overflow: clip; /* Prevent truncation */
+            padding: 6px !important; /* Reduce padding for more space */
+            font-size: 0.9rem; /* Smaller font for better fit */
+            width: 11.11% !important; /* Equal width for all 9 columns */
+        }
+        
+        /* DevExpress grid header styling with equal width */
+        .dxgvHeader td { 
+            white-space: normal; /* Allow text to wrap */
+            overflow: visible; /* Ensure full text is visible */
+            text-overflow: clip; /* Prevent truncation */
+            padding: 6px !important;
+            font-weight: bold;
+            font-size: 0.85rem; /* Smaller header font */
+            width: 11.11% !important; /* Equal width for all 9 columns */
+        }
 
         /* Responsive breakpoints */
         @media (max-width: 767.98px) {
@@ -30,6 +51,16 @@
             .container-fluid { padding-left: 10px; padding-right: 10px; }
             .card-header h5 { font-size: 1rem; }
             .alert.d-flex { flex-direction: column; gap: 6px; text-align: center; }
+            
+            /* Mobile table adjustments */
+            .grid-responsive-wrapper .dxgv td { 
+                font-size: 0.85rem; 
+                padding: 6px !important;
+            }
+            .grid-responsive-wrapper .dxgvHeader td { 
+                font-size: 0.85rem; 
+                padding: 6px !important;
+            }
         }
 
         @media (max-width: 575.98px) {
@@ -38,7 +69,11 @@
         }
 
         /* DevExpress grid override for responsiveness */
-        .dxgv { width: 100% !important; }
+        .dxgv { width: 100% !important; table-layout: fixed !important; }
+        .dxgvHeader { width: 100% !important; table-layout: fixed !important; }
+        
+        /* Ensure all grid tables use fixed layout */
+        .dxgvTable { width: 100% !important; table-layout: fixed !important; }
     </style>
 
     <div class="container-fluid py-4">

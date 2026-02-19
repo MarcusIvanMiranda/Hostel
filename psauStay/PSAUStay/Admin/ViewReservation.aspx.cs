@@ -116,6 +116,9 @@ namespace PSAUStay.Admin
                         bool isPending = (status.Equals("Pending", StringComparison.OrdinalIgnoreCase));
                         divActions.Visible = isPending;
                         pnlProcessed.Visible = !isPending;
+
+                        // Load payment upload information
+                        LoadPaymentUpload(dr["Email"].ToString());
                     }
                     else { Response.Redirect("ViewReservation.aspx"); }
                 }
@@ -220,6 +223,8 @@ namespace PSAUStay.Admin
                 catch (Exception ex)
                 {
                     ShowToast("Error", "Could not delete record: " + ex.Message, "error");
+                    // Log the exception if needed
+                    System.Diagnostics.Debug.WriteLine("Delete error: " + ex.ToString());
                 }
             }
         }
@@ -228,6 +233,78 @@ namespace PSAUStay.Admin
         {
             string script = $"Swal.fire('{title}', '{message}', '{type}');";
             ScriptManager.RegisterStartupScript(this, GetType(), "ServerAction", script, true);
+        }
+
+        private void LoadPaymentUpload(string email)
+        {
+            using (SqlConnection con = new SqlConnection(connStr))
+            {
+                string query = @"
+                    SELECT TOP 1 PaymentID, BookingRef, FileName, FilePath, UploadedAt, Status
+                    FROM RoomPaymentUploads
+                    WHERE Email = @Email
+                    ORDER BY UploadedAt DESC";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", email);
+                con.Open();
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        string filePath = dr["FilePath"].ToString();
+                        string fileName = dr["FileName"].ToString();
+                        DateTime uploadedDate = Convert.ToDateTime(dr["UploadedAt"]);
+                        string status = dr["Status"].ToString();
+
+                        if (!string.IsNullOrEmpty(filePath))
+                        {
+                            // Resolve virtual path to proper URL for image display
+                            string resolvedImagePath = ResolveUrl(filePath);
+                            
+                            // Set the image source
+                            imgPaymentProof.ImageUrl = resolvedImagePath;
+                            imgPaymentProof.AlternateText = fileName;
+
+                            // Set the hyperlink to wrap the image for click functionality
+                            lnkDownloadFile.NavigateUrl = resolvedImagePath;
+
+                            // Set file details
+                            lblFileName.Text = fileName;
+                            lblUploadedDate.Text = uploadedDate.ToString("MMM dd, yyyy hh:mm tt");
+                            lblPaymentStatus.Text = status;
+
+                            // Apply status styling
+                            switch (status.ToLower())
+                            {
+                                case "approved":
+                                    lblPaymentStatus.CssClass = "badge bg-success";
+                                    break;
+                                case "pending":
+                                    lblPaymentStatus.CssClass = "badge bg-warning text-dark";
+                                    break;
+                                case "rejected":
+                                    lblPaymentStatus.CssClass = "badge bg-danger";
+                                    break;
+                                default:
+                                    lblPaymentStatus.CssClass = "badge bg-secondary";
+                                    break;
+                            }
+
+                            // Show the payment upload panel
+                            pnlPaymentUpload.Visible = true;
+                        }
+                        else
+                        {
+                            pnlPaymentUpload.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        pnlPaymentUpload.Visible = false;
+                    }
+                }
+            }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace PSAUStay.Admin
             {
                 try
                 {
-                    // Enhanced query with GuestList joins to get FullName and Contact
+                    // Simplified query to group by email/contact for unique guests
                     string query = @"
                         SELECT 
                             MIN(R.ReservationID) as BookingID,
@@ -45,8 +45,8 @@ namespace PSAUStay.Admin
                         FROM [dbo].[Reservation] R 
                         LEFT JOIN Rooms RM ON R.RoomID = RM.RoomID
                         LEFT JOIN GuestList GL ON R.UserID = GL.GuestID
-                        WHERE R.Status = 'Approved'
-                        GROUP BY R.Contact, R.Status, ISNULL(GL.FullName, 'Guest'), ISNULL(GL.Email, R.Contact), ISNULL(GL.Contact, R.Contact)
+                        WHERE R.Status IN ('Approved', 'CheckedOut')
+                        GROUP BY ISNULL(GL.Email, R.Contact), ISNULL(GL.FullName, 'Guest'), ISNULL(GL.Contact, R.Contact), R.Status
                         ORDER BY MIN(R.CheckInDate) DESC";
 
                     System.Diagnostics.Debug.WriteLine("Executing query: " + query);
@@ -135,7 +135,7 @@ namespace PSAUStay.Admin
                         LEFT JOIN Rooms RM ON R.RoomID = RM.RoomID
                         LEFT JOIN RoomUnits ru ON R.UnitID = ru.UnitID
                         LEFT JOIN GuestList GL ON R.UserID = GL.GuestID
-                        WHERE R.Status = 'Approved' AND (R.Contact = @EmailOrContact OR GL.Email = @EmailOrContact)
+                        WHERE R.Status IN ('Approved', 'CheckedOut') AND (R.Contact = @EmailOrContact OR GL.Email = @EmailOrContact)
                         ORDER BY R.CheckInDate DESC";
 
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);

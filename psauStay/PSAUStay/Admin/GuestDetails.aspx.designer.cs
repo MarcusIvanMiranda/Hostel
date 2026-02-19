@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSAUStay.Admin {
-    
-    
-    public partial class GuestDetails {
-        
+namespace PSAUStay.Admin
+{
+
+
+    public partial class GuestDetails
+    {
+
         /// <summary>
         /// hfSelectedID control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace PSAUStay.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfSelectedID;
-        
+
         /// <summary>
         /// hfActionType control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace PSAUStay.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfActionType;
-        
+
         /// <summary>
         /// btnHiddenConfirm control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace PSAUStay.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnHiddenConfirm;
-        
+
         /// <summary>
         /// lblSuccessMessage control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace PSAUStay.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSuccessMessage;
-        
+
         /// <summary>
         /// gvGuestList control.
         /// </summary>

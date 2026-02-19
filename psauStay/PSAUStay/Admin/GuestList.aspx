@@ -34,9 +34,9 @@
                     <div class="col">
                         <h2 class="mb-1 fw-bold text-white">
                             <i class="bi bi-people-fill me-2" style="color: var(--psau-gold);"></i>
-                            Guest List - Approved Bookings
+                            Guest List - Approved & Checked-Out Bookings
                         </h2>
-                        <p class="mb-0 text-white-50">View and manage all approved guest reservations</p>
+                        <p class="mb-0 text-white-50">View and manage all approved and checked-out guest reservations</p>
                     </div>
                     <div class="col-auto">
                         <a href="<%= ResolveUrl("~/Admin/Dashboard.aspx") %>" class="btn btn-light shadow-sm fw-bold">
@@ -53,7 +53,7 @@
                 OnPageIndexChanging="gvGuestList_PageIndexChanging" 
                 OnRowCommand="gvGuestList_RowCommand"
                 DataKeyNames="BookingID"
-                EmptyDataText="No approved bookings found."
+                EmptyDataText="No approved or checked-out bookings found."
                 style="min-width: 650px;">
                 <Columns>
                     <asp:BoundField DataField="FullName" HeaderText="Guest Name" ItemStyle-CssClass="fw-bold" />
