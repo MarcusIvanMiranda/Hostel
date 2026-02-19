@@ -1,10 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\psauStay",
-    "\\psauStay\\PSAUStay",
-    "\\psauStay\\PSAUStay\\Account"
+    ""
   ],
-  "SelectedNode": "\\psauStay\\PSAUStay\\Account\\Login.aspx",
+  "SelectedNode": "\\PSAUStay.sln",
   "PreviewInSolutionExplorer": false
 }

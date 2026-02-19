@@ -35,3 +35,11 @@ C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.cs
 C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CopyComplete
 C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
 C:\Users\mis_d\source\repos\kv\PSAU_STAY\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\bin\PSAUStay.dll.config
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\bin\PSAUStay.dll
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\bin\PSAUStay.pdb
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.AssemblyReference.cache
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.CoreCompileInputs.cache
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\obj\Debug\PSAUStay.csproj.Up2Date
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\obj\Debug\PSAUStay.dll
+C:\Users\mispc\Source\Repos\BOYOYOT\psauStay\PSAUStay\obj\Debug\PSAUStay.pdb

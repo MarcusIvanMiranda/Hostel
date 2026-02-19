@@ -216,6 +216,7 @@
     <Content Include="RoomImages\Room_1_2.webp" />
     <Content Include="RoomImages\Room_1_5.webp" />
     <Content Include="RoomImages\Room_9_4.webp" />
+    <Content Include=".windsurf\workflows\unit.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

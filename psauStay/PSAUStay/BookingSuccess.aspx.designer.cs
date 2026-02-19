@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PSAUStay {
-    
-    
-    public partial class BookingSuccess {
-        
+namespace PSAUStay
+{
+
+
+    public partial class BookingSuccess
+    {
+
         /// <summary>
         /// litRefNumber control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litRefNumber;
-        
+
         /// <summary>
         /// lblEmailStatus control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblEmailStatus;
-        
+
         /// <summary>
         /// litGuestName control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litGuestName;
-        
+
         /// <summary>
         /// litContact control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litContact;
-        
+
         /// <summary>
         /// litDates control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDates;
-        
+
         /// <summary>
         /// litTotalPrice control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litTotalPrice;
-        
+
         /// <summary>
         /// litDownpayment control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace PSAUStay {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litDownpayment;
-        
+
         /// <summary>
         /// litPaymentInfo control.
         /// </summary>

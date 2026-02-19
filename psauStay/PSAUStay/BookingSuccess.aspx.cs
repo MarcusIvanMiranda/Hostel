@@ -25,6 +25,10 @@ namespace PSAUStay
                 string fullName = Session["FullName"]?.ToString() ?? "Guest";
                 litGuestName.Text = fullName;
 
+                // Get contact number from session
+                string contactNumber = Session["Contact"]?.ToString() ?? "";
+                litContact.Text = contactNumber;
+
                 string roomDetails = roomName;
                 string checkIn = Session["CheckIn"]?.ToString();
                 string checkOut = Session["CheckOut"]?.ToString();
@@ -48,6 +52,11 @@ namespace PSAUStay
                     decimal.TryParse(amountStr, out totalPrice);
                     decimal requiredPayment = (paymentOption == "full") ? totalPrice : (totalPrice * 0.50m);
                     string paymentType = (paymentOption == "full") ? "Full Payment" : "Downpayment (50%)";
+
+                    // Populate the price literals
+                    litTotalPrice.Text = totalPrice.ToString("N2");
+                    litDownpayment.Text = requiredPayment.ToString("N2");
+                    litPaymentInfo.Text = onlineAccountInfo;
 
                     ProcessPaymentRequest(bookingRef, email, requiredPayment, paymentType, formattedCheckIn, formattedCheckOut, roomDetails);
                 }
